@@ -5,6 +5,7 @@ public class Level {
 	public int width, height;
 	public Tile[][] field; //Kann null sein
 	public Player player; //der eigene Spieler
+	public Target target; //das Ziel
 	
 	public int player_spawn_x, player_spawn_y;
 	public int target_x, target_y;
@@ -17,6 +18,7 @@ public class Level {
 		this.width = width;
 		this.height = height;
 		this.player = new Player(player_spawn_x, player_spawn_y);
+		this.target = new Target(target_x, target_y);
 		
 		this.target_x = target_x;
 		this.target_y = target_y;
