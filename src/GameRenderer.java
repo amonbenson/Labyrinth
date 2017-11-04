@@ -7,10 +7,10 @@ public class GameRenderer {
 
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
 
-	float tileSize;
-
-	public GameRenderer() {
-		tileSize = 0;
+	private Game game;
+	
+	public GameRenderer(Game game) {
+		this.game = game;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
@@ -19,7 +19,8 @@ public class GameRenderer {
 
 	private void renderTiles(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
 
-		tileSize = Math.min(Main.WIDTH / game.level.width, Main.HEIGHT / game.level.height);
+		float tileSize = Math.min(Main.WIDTH / game.level.width, Main.HEIGHT / game.level.height);
+		
 
 		for (int x = 0; x < game.level.width; x++) {
 			for (int y = 0; y < game.level.height; y++) {
