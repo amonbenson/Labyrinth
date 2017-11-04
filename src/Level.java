@@ -6,11 +6,16 @@ public class Level {
 	public Player player; //der eigene Spieler
 	
 	public int player_spawn_x, player_spawn_y;
+	public int target_x, target_y;
 	
-	public Level(int width, int height, int player_spawn_x, int player_spawn_y) {
+	public Level(int width, int height, int player_spawn_x, int player_spawn_y, int target_x, int target_y) {
 		this.width = width;
 		this.height = height;
 		this.player = new Player(player_spawn_x, player_spawn_y);
+		
+		this.target_x = target_x;
+		this.target_y = target_y;
+		
 		
 		field = new Tile[width][height];
 		
@@ -19,6 +24,9 @@ public class Level {
 				field[x][y] = null;
 			}
 		}
+		
+		//Target hinzufügen:
+		field[target_x][target_y] = new Target(target_x, target_y);
 		
 	}
 	

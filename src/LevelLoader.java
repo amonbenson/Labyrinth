@@ -5,7 +5,7 @@ public class LevelLoader {
 	}
 	
 	public static Level getDefaultLevel() {
-		Level l = new Level(5, 5);
+		Level l = new Level(5, 5, 0, 4, 4, 0);
 		l.field[1][1] = new Stone(1, 1);
 		l.field[3][1] = new Stone(3, 1);
 		l.field[1][3] = new Stone(1, 3);
