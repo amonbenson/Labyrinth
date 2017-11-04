@@ -7,6 +7,10 @@ public class InputHandler {
 		
 		int selectedID = StoneMoveable.RED;
 		
+		if (gc.getInput().isKeyPressed(Input.KEY_TAB)) {
+			
+		}
+		
 		if (gc.getInput().isKeyPressed(Input.KEY_UP) || gc.getInput().isKeyPressed(Input.KEY_W)) {
 			game.level.moveUp(selectedID);
 		} else if (gc.getInput().isKeyPressed(Input.KEY_DOWN) || gc.getInput().isKeyPressed(Input.KEY_S)) {

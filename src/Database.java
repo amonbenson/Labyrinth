@@ -1,5 +1,3 @@
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -30,6 +28,7 @@ public class Database {
 		IMG_STONE_MOVABLE_CHOSEN = loadImage("stoneMoveableChosen.png");
 		IMG_TILE = loadImage("tile.png");
 		
+		IMG_PLAYER = loadImage("player.png");
 		IMG_FINISH = loadImage("finish.png");
 		
 	}
