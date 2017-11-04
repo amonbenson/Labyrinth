@@ -13,8 +13,16 @@ public class Database {
 
 	public static Image IMG_FINISH;
 	
-	public static void reload() {
-		IMG_STONE = loadImage("finish.png");
+	public static void init() {
+		//TODO REMOVE!!!
+		/*
+		// Load all the images
+		IMG_STONE = loadImage("stone.png");
+		IMG_STONE_MOVABLE = loadImage("stoneMovable.png");
+		IMG_TILE = loadImage("tile.png");
+		
+		IMG_FINISH = loadImage("finish.png");
+		*/
 	}
 	
 	public static Image loadImage(String name) {

@@ -21,6 +21,8 @@ public class Main extends StateBasedGame {
 	public Main(String title) {
 		super(title);
 		
+		// Initialize the database (loud all ressources)
+		Database.init();
 	}
 
 	public static void main(String[] args)  {
