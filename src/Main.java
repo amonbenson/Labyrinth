@@ -14,7 +14,7 @@ public class Main extends StateBasedGame {
 	public static int WIDTH = 1920;
 	public static int HEIGHT = 1080;
 
-	public static boolean FULLSCREEN = true;
+	public static boolean FULLSCREEN = false;
 	public static boolean MOUSE_GRABBED = false;
 	public static int TARGET_FPS = 120;
 	
@@ -44,6 +44,8 @@ public class Main extends StateBasedGame {
 		Database.init();
 		
 		//Hier fügen wir die Menüs hinzu
+		this.addState(new MainMenu());
+		enterState(MainMenu.ID);
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 	}
 

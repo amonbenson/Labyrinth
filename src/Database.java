@@ -10,6 +10,8 @@ public class Database {
 	public static Image IMG_GUI_BUTTON;
 	public static Image IMG_GUI_BUTTON_CHOSEN;
 	
+	public static Image IMG_GUI_MAINMENU_BACKGROUND;
+	
 	public static Image IMG_STONE;
 	public static Image IMG_STONE_MOVABLE;
 	public static Image IMG_STONE_MOVABLE_CHOSEN;
@@ -23,6 +25,8 @@ public class Database {
 		// Load all the images
 		IMG_GUI_BUTTON = loadImage("button.png");
 		IMG_GUI_BUTTON_CHOSEN = loadImage("buttonChosen.png");
+		
+		IMG_GUI_MAINMENU_BACKGROUND = loadImage("mainmenuBackground.png");
 		
 		IMG_STONE = loadImage("stone.png");
 		IMG_STONE_MOVABLE = loadImage("stoneMoveable.png");
