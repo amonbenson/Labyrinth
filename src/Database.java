@@ -15,6 +15,7 @@ public class Database {
 	public static Image IMG_STONE_MOVABLE_CHOSEN;
 	public static Image IMG_TILE;
 
+	public static Image IMG_PLAYER;	
 	public static Image IMG_FINISH;
 	
 	public static void init() {

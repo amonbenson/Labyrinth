@@ -1,18 +1,27 @@
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GameRenderer {
 
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
 	
+	private Color background;
+	
+	
+	
 	public GameRenderer() {
+		background = new Color(73, 209, 145);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
+		g.setColor(background);
+		g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 		renderTiles(gc, sbg, game, g);
+		g.drawString("Züge: "+game.level.moves, 50, 50);
+		
+		
 	}
 
 	private void renderTiles(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
@@ -62,6 +71,9 @@ public class GameRenderer {
 					if (tile instanceof StoneMoveable) {
 						// Render a movable stone
 						g.setColor(STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID]);
+					}
+					if (tile instanceof Target) {
+						g.setColor(Color.darkGray);
 					}
 				}
 				
