@@ -1,6 +1,7 @@
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.geom.Transform;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GameRenderer {
@@ -16,16 +17,37 @@ public class GameRenderer {
 
 	private void renderTiles(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
 
-		float tileSize = Math.min(Main.WIDTH / game.level.width, Main.HEIGHT / game.level.height);
+		// Set the tile transform in the game. This will be used by the input handler to inverse transform the
+		// mouse position to a tile position.
+		float fitW = Main.WIDTH / game.level.width;
+		float fitH = Main.HEIGHT / game.level.height;
+		float tileSize, tileX, tileY;
+		if (fitW > fitH) {
+			tileSize = fitH;
+			tileX = (Main.WIDTH - tileSize * game.level.width) / 2;
+			tileY = 0;
+		} else {
+			tileSize = fitW;
+			tileX = 0;
+			tileY = (Main.HEIGHT - tileSize * game.level.height) / 2;
+		}
 		
-
-		for (int x = 0; x < game.level.width; x++) {
-			for (int y = 0; y < game.level.height; y++) {
-				Tile tile = game.level.field[x][y];
-
-				float dx = x * tileSize;
-				float dy = y * tileSize;
-				float ds = tileSize;
+		// Apply the tile transform
+		g.pushTransform();
+		g.translate(tileX, tileY);
+		g.scale(tileSize, tileSize);
+		
+		// Render the tiles
+		renderTilesFromLevel(g, game.level);
+		
+		
+		g.popTransform();
+	}
+	
+	public void renderTilesFromLevel(Graphics g, Level level) {
+		for (int x = 0; x < level.width; x++) {
+			for (int y = 0; y < level.height; y++) {
+				Tile tile = level.field[x][y];
 
 				if (tile == null) {
 					// Render an empty tile
@@ -43,10 +65,7 @@ public class GameRenderer {
 					}
 				}
 				
-				g.fillRect(dx, dy, ds, ds);
-				
-				g.setColor(Color.black);
-				g.drawRect(dx, dy, ds, ds);
+				g.fillRect(x, y, 1, 1);
 			}
 		}
 	}
