@@ -25,7 +25,7 @@ public class Database {
 		IMG_GUI_BUTTON_CHOSEN = loadImage("buttonChosen.png");
 		
 		IMG_STONE = loadImage("stone.png");
-		IMG_STONE_MOVABLE = loadImage("stoneMovable.png");
+		IMG_STONE_MOVABLE = loadImage("stoneMoveable.png");
 		IMG_TILE = loadImage("tile.png");
 		
 		IMG_FINISH = loadImage("finish.png");

@@ -11,6 +11,7 @@ public class Game extends BasicGameState {
 	
 	private StateBasedGame game;
 	private GameRenderer renderer;
+	private InputHandler input;
 	
 	public Transform tileTransform;
 	
@@ -18,7 +19,10 @@ public class Game extends BasicGameState {
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		this.game = sbg;
+		
 		renderer = new GameRenderer(this);
+		input = new InputHandler();
+		
 		level = LevelLoader.getDefaultLevel();
 		
 	}
@@ -28,7 +32,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		
+		input.input(gc, sbg, this, delta);
 	}
 
 	@Override

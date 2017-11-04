@@ -20,9 +20,6 @@ public class Main extends StateBasedGame {
 	
 	public Main(String title) {
 		super(title);
-		
-		// Initialize the database (loud all ressources)
-		Database.init();
 	}
 
 	public static void main(String[] args)  {
@@ -43,6 +40,9 @@ public class Main extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
+		// Initialize the database (loud all ressources)
+		Database.init();
+		
 		//Hier fügen wir die Menüs hinzu
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 	}
