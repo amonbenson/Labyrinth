@@ -13,7 +13,6 @@ public class Start extends StateBasedGame {
 	
 	public Start(String title) {
 		super(title);
-		
 	}
 
 	public static void main(String[] args)  {
