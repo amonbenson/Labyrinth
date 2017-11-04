@@ -3,10 +3,15 @@ public class Level {
 	
 	public int width, height;
 	public Tile[][] field; //Kann null sein
+	public Player player; //der eigene Spieler
 	
-	public Level(int width, int height) {
+	public int player_spawn_x, player_spawn_y;
+	
+	public Level(int width, int height, int player_spawn_x, int player_spawn_y) {
 		this.width = width;
 		this.height = height;
+		this.player = new Player(player_spawn_x, player_spawn_y);
+		
 		field = new Tile[width][height];
 		
 		for (int x = 0;x<width;x++) {
