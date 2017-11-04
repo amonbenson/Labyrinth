@@ -8,7 +8,19 @@ public class InputHandler {
 		int selectedID = StoneMoveable.RED;
 		
 		if (gc.getInput().isKeyPressed(Input.KEY_TAB)) {
-			
+			if (gc.getInput().isKeyPressed(Input.KEY_LSHIFT)) {
+				//SHIFT
+				game.currentIndexSelecting--;
+				if (game.currentIndexSelecting < 0) {
+					game.currentIndexSelecting = game.maxIndex-1;
+				}
+			} else {
+				//NICHT SHIFT (normal)
+				game.currentIndexSelecting++;
+				if (game.currentIndexSelecting >= game.maxIndex) {
+					game.currentIndexSelecting = 0;
+				}
+			}
 		}
 		
 		if (gc.getInput().isKeyPressed(Input.KEY_UP) || gc.getInput().isKeyPressed(Input.KEY_W)) {
