@@ -26,28 +26,28 @@ public class GameRenderer {
 
 		// Set the tile transform in the game. This will be used by the input handler to inverse transform the
 		// mouse position to a tile position.
+		TileTransform tTrans = game.tileTransform;
+		
 		float fitW = Main.WIDTH / game.level.width;
 		float fitH = Main.HEIGHT / game.level.height;
-		float tileSize, tileX, tileY;
 		if (fitW > fitH) {
-			tileSize = fitH;
-			tileX = (Main.WIDTH - tileSize * game.level.width) / 2;
-			tileY = 0;
+			tTrans.sx = tTrans.sy = fitH;
+			tTrans.x = (Main.WIDTH - tTrans.sx * game.level.width) / 2;
+			tTrans.y = 0;
 		} else {
-			tileSize = fitW;
-			tileX = 0;
-			tileY = (Main.HEIGHT - tileSize * game.level.height) / 2;
+			tTrans.sx = tTrans.sy = fitW;
+			tTrans.x = 0;
+			tTrans.y = (Main.HEIGHT - tTrans.sy * game.level.height) / 2;
 		}
 		
 		// Apply the tile transform
 		g.pushTransform();
-		g.translate(tileX, tileY);
-		g.scale(tileSize, tileSize);
+		tTrans.applyToGraphics(g);
 		
 		// Render the tiles
 		renderTilesFromLevel(g, game.level);
 		
-		
+		// Remove the transform
 		g.popTransform();
 	}
 	
