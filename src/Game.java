@@ -13,12 +13,14 @@ public class Game extends BasicGameState {
 	private GameRenderer renderer;
 	private InputHandler input;
 	
-	public Transform tileTransform;
+	public TileTransform tileTransform;
 	
 	public Level level = null; //das aktuelle Level mit allen interessanten Daten
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		this.game = sbg;
+		
+		tileTransform = new TileTransform();
 		
 		renderer = new GameRenderer();
 		input = new InputHandler();

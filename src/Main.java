@@ -7,7 +7,7 @@ import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import LevelEditor.EditorMain;
+//import LevelEditor.EditorMain;
 
 public class Main extends StateBasedGame {
 
@@ -46,7 +46,7 @@ public class Main extends StateBasedGame {
 		Database.init();
 		
 		//Hier fügen wir die Menüs hinzu
-		this.addState(new EditorMain());
+		//this.addState(new EditorMain());
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 	}
 
