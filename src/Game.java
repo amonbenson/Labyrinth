@@ -10,12 +10,14 @@ public class Game extends BasicGameState {
 	
 	private StateBasedGame game;
 	private GameRenderer renderer;
+	private InputHandler input;
 	
 	public Level level = null; //das aktuelle Level mit allen interessanten Daten
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		this.game = sbg;
 		renderer = new GameRenderer();
+		input = new InputHandler();
 		level = LevelLoader.getDefaultLevel();
 		
 	}
@@ -25,7 +27,7 @@ public class Game extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		
+		input.input(gc, sbg, this, delta);
 	}
 
 	@Override
