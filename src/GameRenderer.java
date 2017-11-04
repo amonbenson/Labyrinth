@@ -6,11 +6,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameRenderer {
 
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
-
-	private Game game;
 	
-	public GameRenderer(Game game) {
-		this.game = game;
+	public GameRenderer() {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {

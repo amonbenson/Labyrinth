@@ -26,6 +26,7 @@ public class Database {
 		
 		IMG_STONE = loadImage("stone.png");
 		IMG_STONE_MOVABLE = loadImage("stoneMoveable.png");
+		IMG_STONE_MOVABLE_CHOSEN = loadImage("stoneMoveableChosen.png");
 		IMG_TILE = loadImage("tile.png");
 		
 		IMG_FINISH = loadImage("finish.png");

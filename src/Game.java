@@ -20,7 +20,7 @@ public class Game extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		this.game = sbg;
 		
-		renderer = new GameRenderer(this);
+		renderer = new GameRenderer();
 		input = new InputHandler();
 		
 		level = LevelLoader.getDefaultLevel();
