@@ -11,6 +11,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import game.Database;
+import game.Main;
 
 public class MainMenu extends BasicGameState{
 
@@ -48,9 +49,18 @@ public class MainMenu extends BasicGameState{
 				Database.IMG_GUI_BUTTON_CHOSEN.draw(rec.x,rec.y, rec.width, rec.height);
 			else
 				Database.IMG_GUI_BUTTON.draw(rec.x,rec.y, rec.width,rec.height);
+			
 			counter ++;
 		}
-		
+		Rectangle rec = rectangleList.get(0);
+		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Spielen")/2,rec.y + rec.height/2 -(Database.FNT_BUTTON.getHeight("Spielen")/2), "Spielen");
+		rec = rectangleList.get(1);
+		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Level Editor")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Level Editor")/2), "Level Editor");
+		rec = rectangleList.get(2);
+		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Ende")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Ende")/2), "Ende");
+	
+	
+	
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -92,7 +102,7 @@ public class MainMenu extends BasicGameState{
 			
 		
 	}
-
+	
 	@Override
 	public int getID() {
 		return ID;
