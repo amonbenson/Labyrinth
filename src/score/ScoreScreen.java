@@ -14,7 +14,7 @@ import game.Database;
 import game.Main;
 
 public class ScoreScreen extends BasicGameState {
-	public static final int ID = 23;
+	public static final int ID = 3;
 
 	public static int score;
 	

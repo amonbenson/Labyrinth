@@ -17,7 +17,7 @@ import game.Database;
 
 public class MainMenu extends BasicGameState{
 
-	public static final int ID = 10;
+	public static final int ID = 0;
 	ArrayList<Rectangle> rectangleList;
 	int buttonWidth =512;
 	int buttonHeight= 128;
@@ -79,15 +79,16 @@ public class MainMenu extends BasicGameState{
 			chosenButton = 0;
 		
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
+			
 			if (chosenButton==0){
 				sbg.enterState(levelSelect.LevelSelect.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
-				chosenButton = 1;				
 			}
 			if (chosenButton==1){
 				
 			}
 			if (chosenButton==2){
-				System.exit(-1);
+				System.out.println("> Bye from the console! Was a pleasure to show you no errors.");
+				gc.exit();
 			}
 		}
 			

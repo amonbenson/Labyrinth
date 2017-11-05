@@ -21,6 +21,8 @@ import game.Level;
 import game.Tile;
 public class EditorMain extends BasicGameState{
 
+	public static final int ID = 4;
+	
 	private StateBasedGame game;
 	private InputHandler inp;
 	private int lastMouseX = -20, lastMouseY = -10;
@@ -92,7 +94,7 @@ public class EditorMain extends BasicGameState{
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return ID;
 	}
 
 }

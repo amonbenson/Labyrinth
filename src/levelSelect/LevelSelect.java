@@ -19,7 +19,7 @@ import game.LevelLoader;
 
 public class LevelSelect extends BasicGameState {
 
-	public static final int ID = 56;
+	public static final int ID = 1;
 	
 	int chosenButton = 0;
 	
@@ -71,12 +71,12 @@ public class LevelSelect extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		// TODO Auto-generated method stub
-		if(gc.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 		
+		if(gc.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			
 		}			
 		
-
+		
 			if(gc.getInput().isKeyPressed(Input.KEY_S)||gc.getInput().isKeyPressed(Input.KEY_DOWN))
 				chosenButton++;
 			if(gc.getInput().isKeyPressed(Input.KEY_W)||gc.getInput().isKeyPressed(Input.KEY_UP))
@@ -87,7 +87,7 @@ public class LevelSelect extends BasicGameState {
 		if(chosenButton>=rectangleList.size())
 			chosenButton = 0;
 		
-		if(gc.getInput().isKeyDown(Input.KEY_ENTER)){
+		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
 			if (chosenButton==0){
 				Game.level = LevelLoader.getTutorialLevel();
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));

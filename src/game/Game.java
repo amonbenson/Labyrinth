@@ -8,7 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
 
-	public static final int ID = 1;
+	public static final int ID = 2;
 	
 	private StateBasedGame game;
 	private GameRenderer renderer;
