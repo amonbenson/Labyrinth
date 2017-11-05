@@ -24,7 +24,7 @@ public class Game extends BasicGameState {
 	 */
 	public int currentIndexSelecting = 0;
 	public int maxIndex;
-	public static final int selectedPlayer = 0;
+	public static final int selectPlayer = 0;
 	
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {

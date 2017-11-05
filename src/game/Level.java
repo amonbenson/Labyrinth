@@ -34,7 +34,7 @@ public class Level {
 		}
 		
 		//Target hinzufügen:
-		field[target_x][target_y] = new Target(target_x, target_y);
+		field[target_x][target_y] = target;
 		
 		//Menschen hinzufügen:
 		field[player_spawn_x][player_spawn_y] = new Player(player_spawn_x, player_spawn_y);
@@ -61,10 +61,6 @@ public class Level {
 	    for (int i=0; i < ret.length; i++)
 	    {
 	        ret[i] = integers.get(i).intValue();
-	    }
-	    System.out.println(integers);
-	    for (int i=0;i<ret.length;i++) {
-	    	System.out.println(ret[i]);
 	    }
 	    return ret;
 	    
@@ -148,6 +144,28 @@ public class Level {
 			}
 		}
 		moves++;
+	}
+
+	public void movePlayerUp() {
+		if (target.y != 0) {
+			if (field[target.x][target.y-1] == null) {
+				field[target.x][target.y-1] = target;
+				field[target.x][target.y] = null;
+				target.y = target.y -1;
+			}
+		}
+	}
+
+	public void movePlayerDown() {
+
+	}
+
+	public void movePlayerLeft() {
+		
+	}
+
+	public void movePlayerRight() {
+		
 	}
 	
 }

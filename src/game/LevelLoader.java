@@ -16,6 +16,9 @@ public class LevelLoader {
 		l.field[2][2] = new StoneMoveable(2, 2, StoneMoveable.BLUE);
 		l.field[2][1] = new StoneMoveable(2, 1, StoneMoveable.RED);
 		l.field[0][3] = new StoneMoveable(0, 3, StoneMoveable.RED);
+		
+		l.usedColors = l.getUsedColors();
+		
 		return l;
 	}
 	
