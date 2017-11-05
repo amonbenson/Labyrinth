@@ -35,7 +35,7 @@ public class LevelSelect extends BasicGameState {
 		rectangleList.add(new Rectangle(704,500,buttonWidth,buttonHeight));
 		rectangleList.add(new Rectangle(704,600,buttonWidth,buttonHeight) );
 		rectangleList.add(new Rectangle(704,700,buttonWidth,buttonHeight) );
-		rectangleList.add(new Rectangle(704,800, buttonWidth, buttonHeight));
+		//rectangleList.add(new Rectangle(704,800, buttonWidth, buttonHeight));
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -63,8 +63,8 @@ public class LevelSelect extends BasicGameState {
 		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Level 3")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Level 3")/2), "Level 3");
 		rec = rectangleList.get(4);
 		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Level 4")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Level 4")/2), "Level 4");
-		rec = rectangleList.get(5);
-		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Level 5")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Level 5")/2), "Level 5");
+		//rec = rectangleList.get(5);
+		//Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Level 5")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Level 5")/2), "Level 5");
 
 	
 		
@@ -89,29 +89,29 @@ public class LevelSelect extends BasicGameState {
 		
 		if(gc.getInput().isKeyDown(Input.KEY_ENTER)){
 			if (chosenButton==0){
-				Game.level = LevelLoader.getDefaultLevel();
+				Game.level = LevelLoader.getTutorialLevel();
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
 			if (chosenButton==1){
-				
+				Game.level = LevelLoader.getLevelOne();
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
 			if (chosenButton==2){
-				
+				Game.level = LevelLoader.getLevelTwo();
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
 			if (chosenButton==3) {
-				
+				Game.level = LevelLoader.getLevelThree();
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
 			if (chosenButton==4) {
-				
+				Game.level = LevelLoader.getLevelFour();
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
-			if (chosenButton==5) {
+			//if (chosenButton==5) {
 				
-				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
-			}
+				//sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
+			//}
 		}
 			
 		

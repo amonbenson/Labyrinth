@@ -12,6 +12,8 @@ import levelSelect.LevelSelect;
 import mainMenu.MainMenu;
 //import LevelEditor.EditorMain;
 import score.ScoreScreen;
+import levelEditor.EditorMain;
+
 
 public class Main extends StateBasedGame {
 
@@ -20,7 +22,7 @@ public class Main extends StateBasedGame {
 	public static int WIDTH = 1920;
 	public static int HEIGHT = 1080;
 
-	public static boolean FULLSCREEN = false;
+	public static boolean FULLSCREEN = true;
 	public static boolean MOUSE_GRABBED = false;
 	public static int TARGET_FPS = 120;
 	
@@ -57,14 +59,13 @@ public class Main extends StateBasedGame {
 		// Start the main music loop
 		Database.SND_MUSIC_TITLE.loop();
 		
-		
-
-
+		//Hier fügen wir die Menüs hinzu
 		this.addState(new MainMenu());//Hier fügen wir die Menüs hinzu
 		this.addState(new LevelSelect());
-		//this.addState(new EditorMain());//Editor
+		this.addState(new EditorMain());//Editor
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 		this.addState(new ScoreScreen());
+		
 		enterState(MainMenu.ID);
 	}
 

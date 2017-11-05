@@ -28,11 +28,11 @@ public class ScoreScreen extends BasicGameState {
 		g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 		Database.FNT_TITLE.drawString(Main.WIDTH/2f-Database.FNT_TITLE.getWidth("Du hast das Level geschafft (Ausrufezeichen, die gibt es in der Font nicht)")/2f, Main.HEIGHT/2f-Main.HEIGHT/4f, "Du hast das Level geschafft (Ausrufezeichen, die gibt es in der Font nicht)");
 		Database.FNT_TITLE.drawString(Main.WIDTH/2f-Database.FNT_TITLE.getWidth("Deine Anzahl an Zuegen ist "+score)/2f, Main.HEIGHT/2f, "Deine Anzahl an Zuegen ist "+score);
-		Database.FNT_TITLE.drawString(Main.WIDTH/2f-Database.FNT_TITLE.getWidth("Druecke Enter um zum Hauptmenu zu gelangen")/2f, Main.HEIGHT/2f+Main.HEIGHT/4f, "Druecke Enter um zum Hauptmenue zu gelangen");
+		Database.FNT_TITLE.drawString(Main.WIDTH/2f-Database.FNT_TITLE.getWidth("Druecke Space um zum Hauptmenu zu gelangen")/2f, Main.HEIGHT/2f+Main.HEIGHT/4f, "Druecke Enter um zum Hauptmenue zu gelangen");
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		if(gc.getInput().isKeyDown(Input.KEY_ENTER)) {
+		if(gc.getInput().isKeyDown(Input.KEY_SPACE)) {
 			sbg.enterState(mainMenu.MainMenu.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 		}
 		
