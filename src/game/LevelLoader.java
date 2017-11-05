@@ -5,6 +5,13 @@ public class LevelLoader {
 		return getDefaultLevel(); //TODO loadFromString
 	}
 	
+	public static Level[] getLevels() {
+		Level[] a = new Level[2];
+		a[0] = getDefaultLevel();
+		a[1] = getDefaultLevel();
+		return a;
+	}
+	
 	public static Level getDefaultLevel() {
 		
 		Tile[][] field = new Tile[5][5];

@@ -16,7 +16,7 @@ public class Game extends BasicGameState {
 	
 	public TileTransform tileTransform;
 	
-	public Level level = null; //das aktuelle Level mit allen interessanten Daten
+	public static Level level = null; //das aktuelle Level mit allen interessanten Daten
 	
 	public static boolean isDone = false;
 	
@@ -37,10 +37,16 @@ public class Game extends BasicGameState {
 		renderer = new GameRenderer();
 		input = new InputHandler();
 		
-		level = LevelLoader.getDefaultLevel();
-		maxIndex = level.usedColors.length+1;
+//LEVEL MUSS WOANDERS GELADEN WERDEN
+		
 	}
 
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+		maxIndex = level.usedColors.length+1;
+	}
+	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		renderer.render(gc, sbg, this, g);
 		

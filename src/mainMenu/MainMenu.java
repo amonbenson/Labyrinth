@@ -92,7 +92,8 @@ public class MainMenu extends BasicGameState{
 		
 		if(gc.getInput().isKeyDown(Input.KEY_ENTER)){
 			if (chosenButton==0){
-				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
+				sbg.enterState(levelSelect.LevelSelect.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
+				
 			}
 			if (chosenButton==1){
 				//sbg.enterState(game.Game.ID);
