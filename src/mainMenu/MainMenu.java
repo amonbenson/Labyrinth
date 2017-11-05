@@ -39,6 +39,8 @@ public class MainMenu extends BasicGameState{
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawImage(Database.IMG_GUI_MAINMENU_BACKGROUND, 0, 0); 
 		
+		
+		
 		int counter = 0;
 		
 		for (Rectangle rec : rectangleList){
@@ -75,6 +77,20 @@ public class MainMenu extends BasicGameState{
 			chosenButton = rectangleList.size()-1;
 		if(chosenButton>=rectangleList.size())
 			chosenButton = 0;
+		
+		if(gc.getInput().isKeyDown(Input.KEY_ENTER)){
+			if (chosenButton==0){
+				sbg.enterState(game.Game.ID);
+			}
+			if (chosenButton==1){
+				sbg.enterState(game.Game.ID);
+			}
+			if (chosenButton==2){
+				System.exit(-1);
+			}
+		}
+			
+		
 	}
 
 	@Override
