@@ -1,4 +1,5 @@
 package game;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,20 +9,29 @@ public class GameRenderer {
 
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
 
+	private long animationTime;
+
 	private Color background;
 
 	public GameRenderer() {
+		animationTime = 0;
 		background = new Color(73, 209, 145);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
+		// Update the animation time
+		animationTime = System.currentTimeMillis();
+
+		// Set the background
 		g.setColor(background);
 		g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+		// Render the tiles
 		renderTiles(gc, sbg, game, g);
-		
-		g.setColor(Color.black);
-		g.drawString("Züge: "+game.level.moves, 50, 50);
-		g.drawString("Modus: "+game.currentIndexSelecting, 50, 150);
+
+		// Luca's Zeug
+		Database.FNT_DEFAULT.drawString(30, 50, "Zuege " + game.level.moves, Color.white);
+		Database.FNT_DEFAULT.drawString(30, 150, "Modus " + game.currentIndexSelecting, Color.white);
 
 	}
 
@@ -71,18 +81,19 @@ public class GameRenderer {
 
 					if (tile instanceof StoneMoveable) {
 						StoneMoveable stone = (StoneMoveable) tile;
-						
+
 						// Render a movable stone
 						Color color = STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID];
 						Database.IMG_STONE_MOVABLE.draw(x, y, 1, 1, color);
 					}
 					if (tile instanceof Player) {
+
 						Database.IMG_PLAYER.draw(x, y, 1, 1);
 					}
 				}
 			}
 		}
-		
+
 		Database.IMG_FINISH.draw(level.target_x, level.target_y, 1, 1);
 	}
 }

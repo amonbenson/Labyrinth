@@ -4,8 +4,7 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.TrueTypeFont;
 
 public class Database {
 
@@ -27,8 +26,9 @@ public class Database {
 	public static Music SND_MUSIC_TITLE;
 	public static Music SND_BUTTON;
 	public static Music SND_WIN;
-	
+
 	public static Font FNT_DEFAULT;
+	public static Font FNT_BUTTON;
 
 	public static void init() {
 		// Load all the images
@@ -47,7 +47,8 @@ public class Database {
 		SND_MUSIC_TITLE = loadMusic("musicTitle.ogg");
 		
 		// Load the font
-		FNT_DEFAULT = loadFont("default.ttf");
+		FNT_DEFAULT = loadFont("default.ttf", 22);
+		FNT_BUTTON = loadFont("default.ttf", 30);
 	}
 
 	public static Image loadImage(String name) {
@@ -72,14 +73,12 @@ public class Database {
 		return null;
 	}
 
-	public static Font loadFont(String name) {
+	public static Font loadFont(String name, float size) {
 		try {
-			final java.awt.Font javaFont = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT,
+			java.awt.Font javaFont = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT,
 					org.newdawn.slick.util.ResourceLoader.getResourceAsStream(FONT_PATH + name));
-			
-			UnicodeFont font = new UnicodeFont(javaFont);
-			font.addAsciiGlyphs();
-			font.getEffects().add(new ColorEffect());
+			javaFont = javaFont.deriveFont(size);
+			Font font = new TrueTypeFont(javaFont, false);
 			
 			return font;
 		} catch (Exception e) {

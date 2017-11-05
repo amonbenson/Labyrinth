@@ -33,7 +33,7 @@ public class Game extends BasicGameState {
 		this.game = sbg;
 		
 		tileTransform = new TileTransform();
-		
+
 		renderer = new GameRenderer();
 		input = new InputHandler();
 		
