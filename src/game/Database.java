@@ -25,6 +25,8 @@ public class Database {
 	public static Image IMG_FINISH;
 
 	public static Music SND_MUSIC_TITLE;
+	public static Music SND_BUTTON;
+	public static Music SND_WIN;
 	
 	public static Font FNT_DEFAULT;
 
@@ -42,7 +44,7 @@ public class Database {
 		IMG_FINISH = loadImage("finish.png");
 		
 		// Load the music / sounds
-		//SND_MUSIC_TITLE = loadMusic("musicTitle.mp3");
+		SND_MUSIC_TITLE = loadMusic("musicTitle.ogg");
 		
 		// Load the font
 		FNT_DEFAULT = loadFont("default.ttf");
