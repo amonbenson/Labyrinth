@@ -15,8 +15,8 @@ public class InputHandler {
 		
 		if (Game.isDone) {
 			Game.isDone = false;
-			game.level.reset();
 			ScoreScreen.score = game.level.moves;
+			game.level.reset();
 			Main.mainGame.transitState(ScoreScreen.ID);
 		}
 		
