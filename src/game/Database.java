@@ -54,6 +54,8 @@ public class Database {
 		
 		// Load the music / sounds
 		SND_MUSIC_TITLE = loadMusic("musicTitle.ogg");
+		SND_BUTTON = loadMusic("button.ogg");
+		SND_WIN = loadMusic("win.ogg");
 		
 		// Load the font
 		FNT_DEFAULT = loadFont("default.ttf", 38);

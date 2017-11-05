@@ -1,10 +1,13 @@
 package game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import mainMenu.MainMenu;
 
 public class Game extends BasicGameState {
 
@@ -54,6 +57,10 @@ public class Game extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+			Main.mainGame.switchState(MainMenu.ID);
+		}
+		
 		input.input(gc, sbg, this, delta);
 	}
 

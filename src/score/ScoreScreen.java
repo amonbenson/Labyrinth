@@ -7,11 +7,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import game.Database;
 import game.Main;
+import mainMenu.MainMenu;
 
 public class ScoreScreen extends BasicGameState {
 	public static final int ID = 3;
@@ -33,7 +32,7 @@ public class ScoreScreen extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		if(gc.getInput().isKeyDown(Input.KEY_SPACE)) {
-			sbg.enterState(mainMenu.MainMenu.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
+			Main.mainGame.switchState(MainMenu.ID);
 		}
 		
 	}

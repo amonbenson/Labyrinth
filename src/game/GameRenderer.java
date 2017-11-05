@@ -8,16 +8,15 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameRenderer {
 
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
-
+	public static final Color BACKGROUND_COLOR = new Color(73, 209, 145);
+	
 	private long animationTime;
 
-	private Color background;
 	private int selectedColor;
 
 	public GameRenderer() {
 		animationTime = 0;
 		
-		background = new Color(73, 209, 145);
 		selectedColor = -1;
 	}
 
@@ -29,7 +28,7 @@ public class GameRenderer {
 		selectedColor = game.colorSelectID;
 
 		// Set the background
-		g.setColor(background);
+		g.setColor(BACKGROUND_COLOR);
 		g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 
 		// Render the tiles

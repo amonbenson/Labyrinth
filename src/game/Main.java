@@ -3,10 +3,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import levelSelect.LevelSelect;
 import mainMenu.MainMenu;
@@ -22,17 +25,20 @@ public class Main extends StateBasedGame {
 	public static int WIDTH = 1920;
 	public static int HEIGHT = 1080;
 
-	public static boolean FULLSCREEN = false;
+	public static boolean FULLSCREEN = true;
 	public static boolean MOUSE_GRABBED = true;
 	public static int TARGET_FPS = 120;
 	
-	public Main(String title) {
-		super(title);
+	public static Main mainGame;
+	
+	public Main() {
+		super(NAME);
 	}
 
 	public static void main(String[] args)  {
 		try {
-			AppGameContainer game = new AppGameContainer(new ScalableGame(new Main(NAME), WIDTH, HEIGHT));
+			mainGame = new Main();
+			AppGameContainer game = new AppGameContainer(new ScalableGame(mainGame, WIDTH, HEIGHT));
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 			if (!FULLSCREEN) {
 				screen.width /= 2;
@@ -69,4 +75,12 @@ public class Main extends StateBasedGame {
 		enterState(MainMenu.ID);
 	}
 
+	/**
+	 * Custom method to switch a state, so that all transitions look the same and the code style is more objective.
+	 * 
+	 * @param newStateID
+	 */
+	public void switchState(int newStateID) {
+		enterState(newStateID, new FadeOutTransition(GameRenderer.BACKGROUND_COLOR), new FadeInTransition(GameRenderer.BACKGROUND_COLOR));
+	}
 }
