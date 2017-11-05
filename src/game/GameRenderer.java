@@ -69,9 +69,11 @@ public class GameRenderer {
 					}
 
 					if (tile instanceof StoneMoveable) {
+						StoneMoveable stone = (StoneMoveable) tile;
+						
 						// Render a movable stone
-						g.setColor(STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID]);
-						g.fillRect(x, y, 1, 1);
+						Color color = STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID];
+						Database.IMG_STONE_MOVABLE.draw(x, y, 1, 1, color);
 					}
 					if (tile instanceof Player) {
 						Database.IMG_PLAYER.draw(x, y, 1, 1);
