@@ -29,9 +29,14 @@ public class Main extends StateBasedGame {
 		try {
 			AppGameContainer game = new AppGameContainer(new ScalableGame(new Main(NAME), WIDTH, HEIGHT));
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+			if (!FULLSCREEN) {
+				screen.width /= 2;
+				screen.height /= 2;
+			}
 			game.setDisplayMode(screen.width, screen.height, FULLSCREEN);
 			game.setClearEachFrame(true);
 			game.setMouseGrabbed(MOUSE_GRABBED);
+			game.setShowFPS(false);
 			game.setTargetFrameRate(TARGET_FPS);
 			game.start();
 		} catch (SlickException se) {

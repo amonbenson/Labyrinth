@@ -43,9 +43,6 @@ public class Game extends BasicGameState {
 		renderer.render(gc, sbg, this, g);
 		
 		Point p = tileTransform.getTilePosition(gc.getInput().getMouseX(), gc.getInput().getMouseY());
-		
-		//g.setFont
-		g.drawString(p.getX() + ", " + p.getY(), 100, 100);
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
