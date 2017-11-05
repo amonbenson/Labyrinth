@@ -1,3 +1,4 @@
+package game;
 
 public class StoneMoveable extends Tile {
 	public int ID;

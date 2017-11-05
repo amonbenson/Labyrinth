@@ -1,3 +1,4 @@
+package game;
 
 public class LevelLoader {
 	public static Level loadFromString(String s) {
