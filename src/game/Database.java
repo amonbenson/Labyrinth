@@ -56,9 +56,9 @@ public class Database {
 		SND_MUSIC_TITLE = loadMusic("musicTitle.ogg");
 		
 		// Load the font
-		FNT_DEFAULT = loadFont("default.ttf", 22);
-		FNT_BUTTON = loadFont("default.ttf", 30);
-		FNT_TITLE = loadFont("default.ttf", 40);
+		FNT_DEFAULT = loadFont("default.ttf", 38);
+		FNT_BUTTON = loadFont("default.ttf", 46);
+		FNT_TITLE = loadFont("default.ttf", 60);
 	}
 
 	public static Image loadImage(String name) {
