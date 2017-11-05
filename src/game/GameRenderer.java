@@ -12,15 +12,21 @@ public class GameRenderer {
 	private long animationTime;
 
 	private Color background;
+	private int selectedColor;
 
 	public GameRenderer() {
 		animationTime = 0;
+		
 		background = new Color(73, 209, 145);
+		selectedColor = -1;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
 		// Update the animation time
 		animationTime = System.currentTimeMillis();
+		
+		// Update selected color from game
+		selectedColor = game.colorSelectID;
 
 		// Set the background
 		g.setColor(background);
@@ -48,7 +54,11 @@ public class GameRenderer {
 			if (i == 0) {
 				Database.IMG_PLAYER.draw(px, py, tileSize, tileSize);
 			} else {
-				Database.IMG_STONE_MOVABLE.draw(px, py, tileSize, tileSize, STONE_MOVABLE_COLORS[game.level.usedColors[i - 1]]);
+				Color color = STONE_MOVABLE_COLORS[game.level.usedColors[i - 1]];
+				if (i == game.currentIndexSelecting)
+					Database.IMG_STONE_MOVABLE_CHOSEN.draw(px, py, tileSize, tileSize, color);
+				else
+					Database.IMG_STONE_MOVABLE.draw(px, py, tileSize, tileSize, color);
 			}
 		}
 		
@@ -103,8 +113,9 @@ public class GameRenderer {
 						StoneMoveable stone = (StoneMoveable) tile;
 
 						// Render a movable stone
-						Color color = STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID];
-						Database.IMG_STONE_MOVABLE.draw(x, y, 1, 1, color);
+						Color color = STONE_MOVABLE_COLORS[stone.ID];
+						if (stone.ID == selectedColor) Database.IMG_STONE_MOVABLE_CHOSEN.draw(x, y, 1, 1, color);
+						else Database.IMG_STONE_MOVABLE.draw(x, y, 1, 1, color);
 					}
 					if (tile instanceof Player) {
 
