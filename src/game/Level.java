@@ -1,5 +1,6 @@
 package game;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Level {
 	
@@ -20,7 +21,7 @@ public class Level {
 	
 	public Level(int player_spawn_x, int player_spawn_y, int target_x, int target_y, Tile[][] field) {
 		this.field = field;
-		this.initialField = field;
+		this.initialField = deepCopy(field);
 		this.initial_player_spawn_x = player_spawn_x;
 		this.initial_player_spawn_y = player_spawn_y;
 		this.width = field.length;
@@ -200,8 +201,31 @@ public class Level {
 	}
 	
 	public void reset() {
-		field = initialField;
+		this.field = this.initialField;
+		this.moves = 0;
 		this.player = new Player(initial_player_spawn_x, initial_player_spawn_y);
+		field[initial_player_spawn_x][initial_player_spawn_y] = player;
+		field[target_x][target_y] = target;
 	}
 	
+	
+	public static Tile[][] deepCopy(Tile[][] original) {
+		Tile[][] result = new Tile[original.length][original[0].length];
+		for ( int x = 0;x<original.length;x++) {
+			for ( int y = 0;y<original[0].length;y++) {
+				if (original[x][y] != null) {
+					if (original[x][y] instanceof Stone) {
+						result[x][y] = new Stone(x, y);
+					} else if (original[x][y] instanceof StoneMoveable) {
+						result[x][y] = new StoneMoveable((StoneMoveable)original[x][y]);
+					} else if (original[x][y] instanceof Player) {
+						result[x][y] = new Player(x, y);
+					}
+				} else {
+					result[x][y] = null;
+				}
+			}
+		}
+		return result;
+	}
 }

@@ -11,9 +11,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+import levelEditor.EditorMain;
 import score.ScoreScreen;
 import mainMenu.MainMenu;
-//import LevelEditor.EditorMain;
 
 public class Main extends StateBasedGame {
 
@@ -59,13 +59,12 @@ public class Main extends StateBasedGame {
 		// Start the main music loop
 		Database.SND_MUSIC_TITLE.loop();
 		
-		
-
-
+		//Hier fügen wir die Menüs hinzu
 		this.addState(new MainMenu());//Hier fügen wir die Menüs hinzu
-		//this.addState(new EditorMain());//Editor
+		this.addState(new EditorMain());//Editor
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 		this.addState(new ScoreScreen());
+		
 		enterState(MainMenu.ID);
 	}
 
