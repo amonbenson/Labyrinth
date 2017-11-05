@@ -193,7 +193,7 @@ public class Level {
 	
 	public void checkIfTargetReached() {
 		if (player.x == target_x && player.y == target_y) {
-			System.exit(0);
+			Game.isDone = true;
 		}
 	}
 	

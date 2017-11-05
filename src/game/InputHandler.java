@@ -1,12 +1,33 @@
 package game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.CrossStateTransition;
+import org.newdawn.slick.state.transition.EmptyTransition;
+
+import score.ScoreScreen;
 
 public class InputHandler {
 	public void input(GameContainer gc, StateBasedGame sbg, Game game, int delta) {
 		
-		int selectedID = StoneMoveable.RED;
+		if (Game.isDone) {
+			Game.isDone = false;
+			ScoreScreen.score = game.level.moves;
+			
+			final long start = System.currentTimeMillis();
+			CrossStateTransition t = new CrossStateTransition(sbg.getState(ScoreScreen.ID)) {				
+				public boolean isComplete() {
+					return (System.currentTimeMillis() - start) > 1000;
+				}
+
+				public void init(GameState firstState, GameState secondState) {
+				}
+			};
+			sbg.enterState(ScoreScreen.ID, t, new EmptyTransition());
+		}
+		
+		
 		
 		if (gc.getInput().isKeyPressed(Input.KEY_TAB)) {
 			if (gc.getInput().isKeyDown(Input.KEY_LSHIFT)) {

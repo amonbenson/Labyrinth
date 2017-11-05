@@ -22,6 +22,11 @@ public class GameRenderer {
 		g.setColor(Color.black);
 		g.drawString("Züge: "+game.level.moves, 50, 50);
 		g.drawString("Modus: "+game.currentIndexSelecting, 50, 150);
+		
+		if (Game.isDone) {
+			g.setColor(new Color(43/255f, 159/255f, 105/255f, 0.5f));
+			g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+		}
 
 	}
 
