@@ -25,9 +25,6 @@ public class MainMenu extends BasicGameState{
 	
 	int chosenButton = 0;
 	
-	int timeCounter = 0;
-	int timeBetweenSwaps = 200;
-	
 	public MainMenu() {
 		
 	}
@@ -68,29 +65,21 @@ public class MainMenu extends BasicGameState{
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		if(gc.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+		if(gc.getInput().isKeyPressed(Input.MOUSE_LEFT_BUTTON)){
 		
 		}			
+		if(gc.getInput().isKeyPressed(Input.KEY_S)||gc.getInput().isKeyPressed(Input.KEY_DOWN))
+			chosenButton++;
+		if(gc.getInput().isKeyPressed(Input.KEY_W)||gc.getInput().isKeyPressed(Input.KEY_UP))
+			chosenButton--;
 		
-
-			if(gc.getInput().isKeyPressed(Input.KEY_S)||gc.getInput().isKeyPressed(Input.KEY_DOWN))
-				chosenButton++;
-			if(gc.getInput().isKeyPressed(Input.KEY_W)||gc.getInput().isKeyPressed(Input.KEY_UP))
-				chosenButton--;
-			timeCounter=0;
-		
-		
-		timeCounter=timeCounter+delta;
-		
-		if(timeCounter>timeBetweenSwaps)
-			timeCounter=timeBetweenSwaps;
 		
 		if(chosenButton<0)
 			chosenButton = rectangleList.size()-1;
 		if(chosenButton>=rectangleList.size())
 			chosenButton = 0;
 		
-		if(gc.getInput().isKeyDown(Input.KEY_ENTER)){
+		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
 			if (chosenButton==0){
 				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
