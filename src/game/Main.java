@@ -54,7 +54,7 @@ public class Main extends StateBasedGame {
 		Database.init();
 		
 		// Start the main music loop
-		//Database.SND_MUSIC_TITLE.loop();
+		Database.SND_MUSIC_TITLE.loop();
 		
 		//Hier fügen wir die Menüs hinzu
 

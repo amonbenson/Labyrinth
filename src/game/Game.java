@@ -18,6 +18,8 @@ public class Game extends BasicGameState {
 	
 	public Level level = null; //das aktuelle Level mit allen interessanten Daten
 	
+	public boolean isDone = false;
+	
 	/*
 	 * [0] heiﬂt Mensch wurde ausgew‰hlt,
 	 * [1], [2...] die usedColors
