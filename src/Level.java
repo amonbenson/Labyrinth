@@ -61,6 +61,10 @@ public class Level {
 	    {
 	        ret[i] = integers.get(i).intValue();
 	    }
+	    System.out.println(integers);
+	    for (int i=0;i<ret.length;i++) {
+	    	System.out.println(ret[i]);
+	    }
 	    return ret;
 	    
 	}

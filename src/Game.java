@@ -17,6 +17,15 @@ public class Game extends BasicGameState {
 	
 	public Level level = null; //das aktuelle Level mit allen interessanten Daten
 	
+	/*
+	 * [0] heiﬂt Mensch wurde ausgew‰hlt,
+	 * [1], [2...] die usedColors
+	 */
+	public int currentIndexSelecting = 0;
+	public int maxIndex;
+	public static final int selectedPlayer = 0;
+	
+	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		this.game = sbg;
 		
@@ -26,6 +35,7 @@ public class Game extends BasicGameState {
 		input = new InputHandler();
 		
 		level = LevelLoader.getDefaultLevel();
+		maxIndex = level.usedColors.length+1;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
