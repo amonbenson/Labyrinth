@@ -3,12 +3,15 @@ package mainMenu;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import game.Database;
 import game.Main;
@@ -69,14 +72,13 @@ public class MainMenu extends BasicGameState{
 		
 		}			
 		
-		if(timeCounter >= timeBetweenSwaps)
-		{
-			if(gc.getInput().isKeyDown(Input.KEY_S)||gc.getInput().isKeyDown(Input.KEY_DOWN))
+
+			if(gc.getInput().isKeyPressed(Input.KEY_S)||gc.getInput().isKeyPressed(Input.KEY_DOWN))
 				chosenButton++;
-			if(gc.getInput().isKeyDown(Input.KEY_W)||gc.getInput().isKeyDown(Input.KEY_UP))
+			if(gc.getInput().isKeyPressed(Input.KEY_W)||gc.getInput().isKeyPressed(Input.KEY_UP))
 				chosenButton--;
 			timeCounter=0;
-		}
+		
 		
 		timeCounter=timeCounter+delta;
 		
@@ -90,10 +92,10 @@ public class MainMenu extends BasicGameState{
 		
 		if(gc.getInput().isKeyDown(Input.KEY_ENTER)){
 			if (chosenButton==0){
-				sbg.enterState(game.Game.ID);
+				sbg.enterState(game.Game.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
 			}
 			if (chosenButton==1){
-				sbg.enterState(game.Game.ID);
+				//sbg.enterState(game.Game.ID);
 			}
 			if (chosenButton==2){
 				System.exit(-1);

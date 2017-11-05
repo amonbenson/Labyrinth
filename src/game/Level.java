@@ -32,15 +32,6 @@ public class Level {
 		this.target_y = target_y;
 		
 		
-		field = new Tile[width][height];
-		
-		for (int x = 0;x<width;x++) {
-			for (int y = 0;y<height;y++) {
-				field[x][y] = null;
-			}
-		}
-		
-		
 		//Menschen hinzufügen:
 		field[player_spawn_x][player_spawn_y] = player;
 		
