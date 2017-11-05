@@ -8,6 +8,11 @@ public class StoneMoveable extends Tile {
 		this.ID = ID;
 	}
 	
+	public StoneMoveable(StoneMoveable s) {
+		super(s.x, s.y);
+		this.ID = s.ID;
+	}
+	
 	public static final int BLUE = 0;
 	public static final int GREEN = 1;
 	public static final int YELLOW = 2;
