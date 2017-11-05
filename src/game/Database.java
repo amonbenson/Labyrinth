@@ -1,6 +1,9 @@
 package game;
+
+import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 
 public class Database {
 
@@ -17,9 +20,9 @@ public class Database {
 	public static Image IMG_PLAYER;	
 	public static Image IMG_FINISH;
 	
+	public static Font FNT_DEFAULT;
+	
 	public static void init() {
-		//TODO REMOVE!!!
-		
 		// Load all the images
 		IMG_GUI_BUTTON = loadImage("button.png");
 		IMG_GUI_BUTTON_CHOSEN = loadImage("buttonChosen.png");
@@ -32,6 +35,8 @@ public class Database {
 		IMG_PLAYER = loadImage("player.png");
 		IMG_FINISH = loadImage("finish.png");
 		
+		// Load the font
+		//FNT_DEFAULT = 
 	}
 	
 	public static Image loadImage(String name) {
@@ -44,4 +49,9 @@ public class Database {
 		
 		return null;
 	}
+	
+	/*
+	public static Font loadFont(String name) {
+		
+	}*/
 }
