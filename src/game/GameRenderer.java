@@ -29,11 +29,30 @@ public class GameRenderer {
 		// Render the tiles
 		renderTiles(gc, sbg, game, g);
 
-		// Luca's Zeug
+		// Draw used Moves
 		Database.FNT_DEFAULT.drawString(30, 50, "Zuege " + game.level.moves, Color.white);
-		Database.FNT_DEFAULT.drawString(30, 150, "Modus " + game.currentIndexSelecting, Color.white);
-
-
+		
+		// Draw the color selector
+		drawColorSelector(game, g, 30, 100);
+	}
+	
+	private void drawColorSelector(Game game, Graphics g, float x, float y) {
+		// Draw the small tiles
+		float tileSize = 128;
+		float tileSpace = 8;
+		for (int i = 0; i < game.maxIndex; i++) {
+			
+			float px = x + tileSize / 2;
+			float py = y + i * (tileSize + tileSpace);
+			
+			if (i == 0) {
+				Database.IMG_PLAYER.draw(px, py, tileSize, tileSize);
+			} else {
+				Database.IMG_STONE_MOVABLE.draw(px, py, tileSize, tileSize, STONE_MOVABLE_COLORS[game.level.usedColors[i - 1]]);
+			}
+		}
+		
+		Database.IMG_SELECTOR.draw(x, y + game.currentIndexSelecting * (tileSize + tileSpace), tileSize * 2, tileSize);
 	}
 
 	private void renderTiles(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
@@ -89,7 +108,15 @@ public class GameRenderer {
 					}
 					if (tile instanceof Player) {
 
+						// Make the player wiggle a bit cause why not
+						g.pushTransform();
+						
+						float wiggle = (float) Math.sin(animationTime * 0.01);
+						g.rotate(x + 0.5f - wiggle * 1.5f, y + 0.5f, wiggle * 1.3f);
+						
 						Database.IMG_PLAYER.draw(x, y, 1, 1);
+						
+						g.popTransform();
 					}
 				}
 			}
