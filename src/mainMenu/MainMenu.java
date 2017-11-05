@@ -54,7 +54,7 @@ public class MainMenu extends BasicGameState{
 		Rectangle rec = rectangleList.get(0);
 		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Spielen")/2,rec.y + rec.height/2 -(Database.FNT_BUTTON.getHeight("Spielen")/2), "Spielen");
 		rec = rectangleList.get(1);
-		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Level Editor")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Level Editor")/2), "Level Editor");
+		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Einstellung")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Einstellung")/2), "Einstellung");
 		rec = rectangleList.get(2);
 		Database.FNT_BUTTON.drawString(rec.x + rec.width/2 - Database.FNT_BUTTON.getWidth("Ende")/2,rec.y + rec.height/2 - (Database.FNT_BUTTON.getHeight("Ende")/2), "Ende");
 	
@@ -81,7 +81,7 @@ public class MainMenu extends BasicGameState{
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
 			if (chosenButton==0){
 				sbg.enterState(levelSelect.LevelSelect.ID, new FadeOutTransition(Color.black), new FadeInTransition(Color.white));
-				
+				chosenButton = 1;				
 			}
 			if (chosenButton==1){
 				
