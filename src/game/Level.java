@@ -37,6 +37,9 @@ public class Level {
 		//Menschen hinzufügen:
 		field[player_spawn_x][player_spawn_y] = player;
 		
+		//Target hinzufügen:
+		field[target_x][target_y] = target;
+		
 		usedColors = getUsedColors();
 	}
 	
@@ -146,7 +149,7 @@ public class Level {
 
 	public void movePlayerUp() {
 		if (player.y != 0) {
-			if (field[player.x][player.y-1] == null) {
+			if (field[player.x][player.y-1] == null || field[player.x][player.y-1] instanceof Target) {
 				field[player.x][player.y-1] = player;
 				field[player.x][player.y] = null;
 				player.y = player.y -1;
@@ -156,7 +159,7 @@ public class Level {
 	}
 
 	public void movePlayerDown() {
-		if (player.y != height-1) {
+		if (player.y != height-1 || field[player.x][player.y+1] instanceof Target) {
 			if (field[player.x][player.y+1] == null) {
 				field[player.x][player.y+1] = player;
 				field[player.x][player.y] = null;
@@ -168,7 +171,7 @@ public class Level {
 
 	public void movePlayerLeft() {
 		if (player.x != 0) {
-			if (field[player.x-1][player.y] == null) {
+			if (field[player.x-1][player.y] == null || field[player.x-1][player.y] instanceof Target) {
 				field[player.x-1][player.y] = player;
 				field[player.x][player.y] = null;
 				player.x = player.x -1;
@@ -179,7 +182,7 @@ public class Level {
 
 	public void movePlayerRight() {
 		if (player.x != width-1) {
-			if (field[player.x+1][player.y] == null) {
+			if (field[player.x+1][player.y] == null || field[player.x+1][player.y] instanceof Target) {
 				field[player.x+1][player.y] = player;
 				field[player.x][player.y] = null;
 				player.x = player.x +1;
@@ -190,7 +193,7 @@ public class Level {
 	
 	public void checkIfTargetReached() {
 		if (player.x == target_x && player.y == target_y) {
-			
+			System.exit(0);
 		}
 	}
 	
