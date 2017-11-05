@@ -16,6 +16,7 @@ public class InputHandler {
 		if (Game.isDone) {
 			Game.isDone = false;
 			ScoreScreen.score = game.level.moves;
+			game.level.reset();
 			sbg.enterState(ScoreScreen.ID, new FadeOutTransition(Color.white), new FadeInTransition(Color.black));
 		}
 		
