@@ -32,7 +32,7 @@ public class ScoreScreen extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		if(gc.getInput().isKeyDown(Input.KEY_SPACE)) {
-			Main.mainGame.switchState(MainMenu.ID);
+			Main.mainGame.transitState(MainMenu.ID);
 		}
 		
 	}

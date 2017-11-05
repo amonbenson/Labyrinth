@@ -74,7 +74,7 @@ public class MainMenu extends BasicGameState{
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)){
 			
 			if (chosenButton==0){
-				Main.mainGame.switchState(LevelSelect.ID);
+				Main.mainGame.transitState(LevelSelect.ID);
 			}
 			if (chosenButton==1){
 				

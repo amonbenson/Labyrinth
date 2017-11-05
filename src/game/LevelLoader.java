@@ -211,4 +211,36 @@ public class LevelLoader {
 		
 		return l;
 	}
+
+	/**
+	 * NOTE: That method is for debug perpose only! It doesn't guarantee a level to be
+	 * solvable, also the levels look like shit. But it can help when doing tests with
+	 * maps.
+	 * 
+	 * @param w		Width of the level to be generated
+	 * @param h		Height "  "    "   "  "      "
+	 * @return		The generated level
+	 */
+	public static Level getLevelExremeRandom(int w, int h) {
+		// Totally random maze
+		Tile[][] field = new Tile[w][h];
+		for (int x=0;x<w;x++) {
+			for (int y=0;y<h;y++) {
+				int i = (int) (Math.random() * 6);
+				if (i == 0) field[x][y] = null;
+				if (i == 1) field[x][y] = new Stone(x, y);
+				if (i == 2) field[x][y] = new StoneMoveable(x, y, StoneMoveable.RED);
+				if (i == 3) field[x][y] = new StoneMoveable(x, y, StoneMoveable.BLUE);
+				if (i == 4) field[x][y] = new StoneMoveable(x, y, StoneMoveable.YELLOW);
+				if (i == 5) field[x][y] = new StoneMoveable(x, y, StoneMoveable.GREEN);
+			}
+		}
+		
+		// Make space for player
+		field[0][w-1] = null;
+		
+		Level l = new Level(0, 4, 4, 0, field);
+		l.usedColors = l.getUsedColors();
+		return l;
+	}
 }

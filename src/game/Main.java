@@ -27,6 +27,7 @@ public class Main extends StateBasedGame {
 
 	public static boolean FULLSCREEN = true;
 	public static boolean MOUSE_GRABBED = true;
+	public static boolean DEBUG_START = false;
 	public static int TARGET_FPS = 120;
 	
 	public static Main mainGame;
@@ -72,7 +73,12 @@ public class Main extends StateBasedGame {
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 		this.addState(new ScoreScreen());
 		
-		enterState(MainMenu.ID);
+		if (DEBUG_START) {
+			Game.level = LevelLoader.getLevelTwo();
+			enterState(Game.ID);
+		} else {
+			enterState(MainMenu.ID);
+		}
 	}
 
 	/**
@@ -80,7 +86,7 @@ public class Main extends StateBasedGame {
 	 * 
 	 * @param newStateID
 	 */
-	public void switchState(int newStateID) {
+	public void transitState(int newStateID) {
 		enterState(newStateID, new FadeOutTransition(GameRenderer.BACKGROUND_COLOR), new FadeInTransition(GameRenderer.BACKGROUND_COLOR));
 	}
 }

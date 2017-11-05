@@ -10,20 +10,52 @@ public class GameRenderer {
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
 	public static final Color BACKGROUND_COLOR = new Color(73, 209, 145);
 	
+	public static final float TILE_ANIMATION_SPEED = 0.008f;
+	
 	private long animationTime;
 
+	private float tileAnimationState;
+	private boolean doTileAnimation;
+	
 	private int selectedColor;
 
 	public GameRenderer() {
 		animationTime = 0;
 		
+		tileAnimationState = 0;
+		doTileAnimation = false;
+		
 		selectedColor = -1;
 	}
 
-	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
-		// Update the animation time
-		animationTime = System.currentTimeMillis();
+	public void startTileAnimation() {
+		if (!doTileAnimation) {
+			doTileAnimation = true;
+			tileAnimationState = 0;
+		}
+	}
+
+	public void update(GameContainer gc, StateBasedGame sbg, Game game, int delta) {
+		// Update global animatino time (e. g. used for wiggle animation)
+		animationTime += delta;
 		
+		// Update tile animation
+		if (tileAnimationState < 1 && doTileAnimation) {
+			tileAnimationState += TILE_ANIMATION_SPEED * delta;
+			
+		} else if (doTileAnimation) {
+			doTileAnimation = false;
+			tileAnimationState = 0;
+			for (int x = 0; x < game.level.width; x++) {
+				for (int y = 0; y < game.level.height; y++) {
+					if (game.level.field[x][y] != null)
+						game.level.field[x][y].isAnimating = false;
+				}
+			}
+		}
+	}
+	
+	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
 		// Update selected color from game
 		selectedColor = game.colorSelectID;
 
@@ -95,39 +127,59 @@ public class GameRenderer {
 	}
 
 	public void renderTilesFromLevel(Graphics g, Level level) {
+		// Fix tile animation state boundries
+		if (tileAnimationState > 1) tileAnimationState = 1;
+		
+		// Draw all background tiles
+		for (int x = 0; x < level.width; x++)
+			for (int y = 0; y < level.height; y++)
+				Database.IMG_TILE.draw(x, y, 1, 1);
+		
+		// Draw the foreground tiles
 		for (int x = 0; x < level.width; x++) {
 			for (int y = 0; y < level.height; y++) {
-				// Draw the default background tile image
-				Database.IMG_TILE.draw(x, y, 1, 1);
-
 				Tile tile = level.field[x][y];
+				if (tile == null) continue;
 
-				if (tile != null) {
-					// Draw a solid stone texture
-					if (tile instanceof Stone) {
-						Database.IMG_STONE.draw(x, y, 1, 1);
-					}
+				// Calculate the tile x and y position. If animating, use the animated x value
+				float dx = x;
+				float dy = y;
+				if (tile.isAnimating) {
+					dx = tile.getAnimatedX(tileAnimationState);
+					dy = tile.getAnimatedY(tileAnimationState);
+				}
+				
+				// Draw a solid stone texture
+				if (tile instanceof Stone) {
+					Database.IMG_STONE.draw(dx, dy, 1, 1);
+				}
 
-					if (tile instanceof StoneMoveable) {
-						StoneMoveable stone = (StoneMoveable) tile;
+				// Draw a movable stone texture and color it the right way
+				if (tile instanceof StoneMoveable) {
+					StoneMoveable stone = (StoneMoveable) tile;
 
-						// Render a movable stone
-						Color color = STONE_MOVABLE_COLORS[stone.ID];
-						if (stone.ID == selectedColor) Database.IMG_STONE_MOVABLE_CHOSEN.draw(x, y, 1, 1, color);
-						else Database.IMG_STONE_MOVABLE.draw(x, y, 1, 1, color);
-					}
-					if (tile instanceof Player) {
+					// Render a movable stone
+					Color color = STONE_MOVABLE_COLORS[stone.ID];
+					if (stone.ID == selectedColor) Database.IMG_STONE_MOVABLE_CHOSEN.draw(dx, dy, 1, 1, color);
+					else Database.IMG_STONE_MOVABLE.draw(dx, dy, 1, 1, color);
+				}
+				
+				// Draw the player texture
+				if (tile instanceof Player) {
 
-						// Make the player wiggle a bit cause why not
-						g.pushTransform();
-						
-						float wiggle = (float) Math.sin(animationTime * 0.01);
-						g.rotate(x + 0.5f - wiggle * 1.5f, y + 0.5f, wiggle * 1.3f);
-						
-						Database.IMG_PLAYER.draw(x, y, 1, 1);
-						
-						g.popTransform();
-					}
+					// Make the player wiggle a bit cause why not
+					g.pushTransform();
+					
+					// Player-specific animation details (wiggle and jump)
+					
+					float wiggle = (float) Math.sin(animationTime * 0.01);
+					g.rotate(x + 0.5f - wiggle * 1.5f, y + 0.5f, wiggle * 1.3f);
+					if (level.player.isAnimating)
+						dy -= (float) Math.sin(tileAnimationState * Math.PI) * 0.14f;
+					
+					Database.IMG_PLAYER.draw(dx, dy, 1, 1);
+					
+					g.popTransform();
 				}
 			}
 		}

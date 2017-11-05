@@ -14,8 +14,8 @@ public class Game extends BasicGameState {
 	public static final int ID = 2;
 	
 	private StateBasedGame game;
-	private GameRenderer renderer;
-	private InputHandler input;
+	public GameRenderer renderer;
+	public InputHandler input;
 	
 	public TileTransform tileTransform;
 	
@@ -39,9 +39,6 @@ public class Game extends BasicGameState {
 
 		renderer = new GameRenderer();
 		input = new InputHandler();
-		
-//LEVEL MUSS WOANDERS GELADEN WERDEN
-		
 	}
 
 	@Override
@@ -57,10 +54,15 @@ public class Game extends BasicGameState {
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		// Exit on ESC
 		if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
-			Main.mainGame.switchState(MainMenu.ID);
+			Main.mainGame.transitState(MainMenu.ID);
 		}
 		
+		// Update the renderer (makes camera move, updates animations, etc.)
+		renderer.update(gc, sbg, this, delta);
+		
+		// Handle user input
 		input.input(gc, sbg, this, delta);
 	}
 

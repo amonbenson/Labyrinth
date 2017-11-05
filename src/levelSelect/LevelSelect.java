@@ -38,7 +38,7 @@ public class LevelSelect extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		
 		if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
-			Main.mainGame.switchState(MainMenu.ID);
+			Main.mainGame.transitState(MainMenu.ID);
 		}
 		
 		
@@ -69,7 +69,7 @@ public class LevelSelect extends BasicGameState {
 				Game.level = LevelLoader.getLevelFour();
 			}
 			
-			Main.mainGame.switchState(Game.ID);
+			Main.mainGame.transitState(Game.ID);
 		}
 			
 		

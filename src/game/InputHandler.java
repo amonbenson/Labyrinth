@@ -17,7 +17,7 @@ public class InputHandler {
 			Game.isDone = false;
 			game.level.reset();
 			ScoreScreen.score = game.level.moves;
-			Main.mainGame.switchState(ScoreScreen.ID);
+			Main.mainGame.transitState(ScoreScreen.ID);
 		}
 		
 		
@@ -50,30 +50,35 @@ public class InputHandler {
 			}
 		}
 
+		// Move the player / colored tile and start the tile animation
 		if (gc.getInput().isKeyPressed(Input.KEY_UP) || gc.getInput().isKeyPressed(Input.KEY_W)) {
 			if (game.currentIndexSelecting == game.selectPlayer) {
 				game.level.movePlayerUp();
 			} else {
 				game.level.moveUp(game.level.usedColors[game.currentIndexSelecting - 1]);
 			}
+			game.renderer.startTileAnimation();
 		} else if (gc.getInput().isKeyPressed(Input.KEY_DOWN) || gc.getInput().isKeyPressed(Input.KEY_S)) {
 			if (game.currentIndexSelecting == game.selectPlayer) {
 				game.level.movePlayerDown();
 			} else {
 				game.level.moveDown(game.level.usedColors[game.currentIndexSelecting - 1]);
 			}
+			game.renderer.startTileAnimation();
 		} else if (gc.getInput().isKeyPressed(Input.KEY_LEFT) || gc.getInput().isKeyPressed(Input.KEY_A)) {
 			if (game.currentIndexSelecting == game.selectPlayer) {
 				game.level.movePlayerLeft();
 			} else {
 				game.level.moveLeft(game.level.usedColors[game.currentIndexSelecting - 1]);
 			}
+			game.renderer.startTileAnimation();
 		} else if (gc.getInput().isKeyPressed(Input.KEY_RIGHT) || gc.getInput().isKeyPressed(Input.KEY_D)) {
 			if (game.currentIndexSelecting == game.selectPlayer) {
 				game.level.movePlayerRight();
 			} else {
 				game.level.moveRight(game.level.usedColors[game.currentIndexSelecting - 1]);
 			}
+			game.renderer.startTileAnimation();
 		}
 
 	}
