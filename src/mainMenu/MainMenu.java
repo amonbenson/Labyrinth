@@ -1,6 +1,7 @@
+package mainMenu;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -9,14 +10,19 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import game.Database;
+
 public class MainMenu extends BasicGameState{
 
-	static final int ID = 10;
+	public static final int ID = 10;
 	ArrayList<Rectangle> rectangleList;
 	int buttonWidth =512;
 	int buttonHeight= 128;
 	
 	int chosenButton = 0;
+	
+	int timeCounter = 0;
+	int timeBetweenSwaps = 200;
 	
 	public MainMenu() {
 		
@@ -39,6 +45,8 @@ public class MainMenu extends BasicGameState{
 			if (counter == chosenButton){
 				g.drawImage(Database.IMG_GUI_BUTTON_CHOSEN,rec.x,rec.y);
 			}
+			else
+				g.drawImage(Database.IMG_GUI_BUTTON,rec.x,rec.y);
 			counter ++;
 		}
 		
@@ -50,14 +58,23 @@ public class MainMenu extends BasicGameState{
 		
 		}			
 		
-		if(gc.getInput().isKeyDown(Input.KEY_S)||gc.getInput().isKeyDown(Input.KEY_DOWN))
-			chosenButton++;
-		if(gc.getInput().isKeyDown(Input.KEY_W)||gc.getInput().isKeyDown(Input.KEY_UP))
-			chosenButton--;
+		if(timeCounter >= timeBetweenSwaps)
+		{
+			if(gc.getInput().isKeyDown(Input.KEY_S)||gc.getInput().isKeyDown(Input.KEY_DOWN))
+				chosenButton--;
+			if(gc.getInput().isKeyDown(Input.KEY_W)||gc.getInput().isKeyDown(Input.KEY_UP))
+				chosenButton++;
+			timeCounter=0;
+		}
+		
+		timeCounter=timeCounter+delta;
+		
+		if(timeCounter>timeBetweenSwaps)
+			timeCounter=timeBetweenSwaps;
 		
 		if(chosenButton<0)
 			chosenButton = rectangleList.size();
-		if(chosenButton>=rectangleList.size())
+		if(chosenButton>rectangleList.size())
 			chosenButton = 0;
 	}
 

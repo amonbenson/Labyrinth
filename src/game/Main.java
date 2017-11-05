@@ -1,3 +1,4 @@
+package game;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -6,6 +7,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import mainMenu.MainMenu;
+
+//import LevelEditor.EditorMain;
 
 public class Main extends StateBasedGame {
 
@@ -26,9 +31,14 @@ public class Main extends StateBasedGame {
 		try {
 			AppGameContainer game = new AppGameContainer(new ScalableGame(new Main(NAME), WIDTH, HEIGHT));
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+			if (!FULLSCREEN) {
+				screen.width /= 2;
+				screen.height /= 2;
+			}
 			game.setDisplayMode(screen.width, screen.height, FULLSCREEN);
 			game.setClearEachFrame(true);
 			game.setMouseGrabbed(MOUSE_GRABBED);
+			game.setShowFPS(false);
 			game.setTargetFrameRate(TARGET_FPS);
 			game.start();
 		} catch (SlickException se) {
@@ -44,8 +54,11 @@ public class Main extends StateBasedGame {
 		Database.init();
 		
 		//Hier fügen wir die Menüs hinzu
+
 		this.addState(new MainMenu());
 		enterState(MainMenu.ID);
+
+		//this.addState(new EditorMain());
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 	}
 
