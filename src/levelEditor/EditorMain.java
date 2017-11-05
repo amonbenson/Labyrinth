@@ -18,6 +18,7 @@ import game.Database;
 import game.GameRenderer;
 import game.TileTransform;
 import game.Level;
+import game.Tile;
 public class EditorMain extends BasicGameState{
 
 	private StateBasedGame game;
@@ -34,7 +35,10 @@ public class EditorMain extends BasicGameState{
 		inp = new InputHandler(this);
 		arg0.getInput().addMouseListener(inp);
 		rend = new GameRenderer();
-		lvl = new Level(5, 5, 0, 0, 4, 4);
+		Tile[][] tilearr = new Tile[5][];
+		for (int i = 0; i<tilearr.length; i++)
+			tilearr[i] = new Tile[5];
+		lvl = new Level(0, 0, 4, 4,tilearr);
 		trans = new TileTransform(0, 50, 1000/lvl.width, 1000/lvl.height);
 		// initialise the font
 		Font font = new Font("Verdana", Font.BOLD, 30);
