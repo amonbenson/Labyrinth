@@ -201,7 +201,10 @@ public class Level {
 	
 	public void reset() {
 		field = initialField;
+		this.moves = 0;
 		this.player = new Player(initial_player_spawn_x, initial_player_spawn_y);
+		field[initial_player_spawn_x][initial_player_spawn_y] = player;
+		field[target_x][target_y] = target;
 	}
 	
 }
