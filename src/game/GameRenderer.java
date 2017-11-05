@@ -18,7 +18,8 @@ public class GameRenderer {
 		g.setColor(background);
 		g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
 		renderTiles(gc, sbg, game, g);
-
+		
+		g.setColor(Color.black);
 		g.drawString("Züge: "+game.level.moves, 50, 50);
 		g.drawString("Modus: "+game.currentIndexSelecting, 50, 150);
 
