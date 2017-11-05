@@ -15,9 +15,16 @@ public class Level {
 	
 	public int[] usedColors;
 	
-	public Level(int width, int height, int player_spawn_x, int player_spawn_y, int target_x, int target_y) {
-		this.width = width;
-		this.height = height;
+	public int initial_player_spawn_x, initial_player_spawn_y;
+	public Tile[][] initialField;
+	
+	public Level(int player_spawn_x, int player_spawn_y, int target_x, int target_y, Tile[][] field) {
+		this.field = field;
+		this.initialField = field;
+		this.initial_player_spawn_x = player_spawn_x;
+		this.initial_player_spawn_y = player_spawn_y;
+		this.width = field.length;
+		this.height = field[0].length;
 		this.player = new Player(player_spawn_x, player_spawn_y);
 		this.target = new Target(target_x, target_y);
 		
@@ -199,6 +206,11 @@ public class Level {
 		if (player.x == target_x && player.y == target_y) {
 			Game.isDone = true;
 		}
+	}
+	
+	public void reset() {
+		field = initialField;
+		this.player = new Player(initial_player_spawn_x, initial_player_spawn_y);
 	}
 	
 }
