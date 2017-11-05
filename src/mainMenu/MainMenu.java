@@ -68,23 +68,10 @@ public class MainMenu extends BasicGameState{
 		if(gc.getInput().isKeyPressed(Input.MOUSE_LEFT_BUTTON)){
 		
 		}			
-		
-<<<<<<< HEAD
 		if(gc.getInput().isKeyPressed(Input.KEY_S)||gc.getInput().isKeyPressed(Input.KEY_DOWN))
 			chosenButton++;
 		if(gc.getInput().isKeyPressed(Input.KEY_W)||gc.getInput().isKeyPressed(Input.KEY_UP))
 			chosenButton--;
-=======
-
-			if(gc.getInput().isKeyPressed(Input.KEY_S)||gc.getInput().isKeyPressed(Input.KEY_DOWN))
-				chosenButton++;
-			if(gc.getInput().isKeyPressed(Input.KEY_W)||gc.getInput().isKeyPressed(Input.KEY_UP))
-				chosenButton--;
-			timeCounter=0;
-		
-		
-		timeCounter=timeCounter+delta;
->>>>>>> 80c4896813eb156d65bb522f8fc2e9d72de6e4c8
 		
 		
 		if(chosenButton<0)
