@@ -110,7 +110,9 @@ public class GameRenderer {
 
 						// Make the player wiggle a bit cause why not
 						g.pushTransform();
-						g.rotate(x + 0.5f, y + 0.5f, (float) (Math.sin(animationTime * 0.01) * 1.3));
+						
+						float wiggle = (float) Math.sin(animationTime * 0.01);
+						g.rotate(x + 0.5f - wiggle * 1.5f, y + 0.5f, wiggle * 1.3f);
 						
 						Database.IMG_PLAYER.draw(x, y, 1, 1);
 						
