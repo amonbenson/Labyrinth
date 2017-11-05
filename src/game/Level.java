@@ -34,10 +34,10 @@ public class Level {
 		}
 		
 		//Target hinzufügen:
-		field[target_x][target_y] = new Target(target_x, target_y);
+		field[target_x][target_y] = target;
 		
 		//Menschen hinzufügen:
-		field[player_spawn_x][player_spawn_y] = new Player(player_spawn_x, player_spawn_y);
+		field[player_spawn_x][player_spawn_y] = player;
 		
 		usedColors = getUsedColors();
 	}
@@ -61,10 +61,6 @@ public class Level {
 	    for (int i=0; i < ret.length; i++)
 	    {
 	        ret[i] = integers.get(i).intValue();
-	    }
-	    System.out.println(integers);
-	    for (int i=0;i<ret.length;i++) {
-	    	System.out.println(ret[i]);
 	    }
 	    return ret;
 	    
@@ -148,6 +144,46 @@ public class Level {
 			}
 		}
 		moves++;
+	}
+
+	public void movePlayerUp() {
+		if (player.y != 0) {
+			if (field[player.x][player.y-1] == null) {
+				field[player.x][player.y-1] = player;
+				field[player.x][player.y] = null;
+				player.y = player.y -1;
+			}
+		}
+	}
+
+	public void movePlayerDown() {
+		if (player.y != height-1) {
+			if (field[player.x][player.y+1] == null) {
+				field[player.x][player.y+1] = player;
+				field[player.x][player.y] = null;
+				player.y = player.y +1;
+			}
+		}
+	}
+
+	public void movePlayerLeft() {
+		if (player.x != 0) {
+			if (field[player.x-1][player.y] == null) {
+				field[player.x-1][player.y] = player;
+				field[player.x][player.y] = null;
+				player.x = player.x -1;
+			}
+		}
+	}
+
+	public void movePlayerRight() {
+		if (player.x != width-1) {
+			if (field[player.x+1][player.y] == null) {
+				field[player.x+1][player.y] = player;
+				field[player.x][player.y] = null;
+				player.x = player.x +1;
+			}
+		}
 	}
 	
 }

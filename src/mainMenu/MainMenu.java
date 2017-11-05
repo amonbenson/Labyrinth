@@ -30,9 +30,9 @@ public class MainMenu extends BasicGameState{
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		rectangleList = new ArrayList<Rectangle>();
-		rectangleList.add(new Rectangle(704,540,buttonWidth,buttonHeight) );
-		rectangleList.add(new Rectangle(704,360,buttonWidth,buttonHeight) );
-		rectangleList.add(new Rectangle(704,180,buttonWidth,buttonHeight) );
+		rectangleList.add(new Rectangle(704,540,buttonWidth,buttonHeight));
+		rectangleList.add(new Rectangle(704,720,buttonWidth,buttonHeight) );
+		rectangleList.add(new Rectangle(704,900,buttonWidth,buttonHeight) );
 		
 	}
 
@@ -42,11 +42,10 @@ public class MainMenu extends BasicGameState{
 		int counter = 0;
 		
 		for (Rectangle rec : rectangleList){
-			if (counter == chosenButton){
-				g.drawImage(Database.IMG_GUI_BUTTON_CHOSEN,rec.x,rec.y);
-			}
+			if (counter == chosenButton)
+				Database.IMG_GUI_BUTTON_CHOSEN.draw(rec.x,rec.y, rec.width, rec.height);
 			else
-				g.drawImage(Database.IMG_GUI_BUTTON,rec.x,rec.y);
+				Database.IMG_GUI_BUTTON.draw(rec.x,rec.y, rec.width,rec.height);
 			counter ++;
 		}
 		
@@ -61,9 +60,9 @@ public class MainMenu extends BasicGameState{
 		if(timeCounter >= timeBetweenSwaps)
 		{
 			if(gc.getInput().isKeyDown(Input.KEY_S)||gc.getInput().isKeyDown(Input.KEY_DOWN))
-				chosenButton--;
-			if(gc.getInput().isKeyDown(Input.KEY_W)||gc.getInput().isKeyDown(Input.KEY_UP))
 				chosenButton++;
+			if(gc.getInput().isKeyDown(Input.KEY_W)||gc.getInput().isKeyDown(Input.KEY_UP))
+				chosenButton--;
 			timeCounter=0;
 		}
 		
@@ -73,8 +72,8 @@ public class MainMenu extends BasicGameState{
 			timeCounter=timeBetweenSwaps;
 		
 		if(chosenButton<0)
-			chosenButton = rectangleList.size();
-		if(chosenButton>rectangleList.size())
+			chosenButton = rectangleList.size()-1;
+		if(chosenButton>=rectangleList.size())
 			chosenButton = 0;
 	}
 

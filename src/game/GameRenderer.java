@@ -76,9 +76,11 @@ public class GameRenderer {
 					if (tile instanceof Target) {
 						Database.IMG_FINISH.draw(x, y, 1, 1);
 					}
+					if (tile instanceof Player) {
+						Database.IMG_PLAYER.draw(x, y, 1, 1);
+					}
 				}
 			}
 		}
 	}
-
 }

@@ -9,11 +9,16 @@ public class InputHandler {
 		int selectedID = StoneMoveable.RED;
 		
 		if (gc.getInput().isKeyPressed(Input.KEY_TAB)) {
-			if (gc.getInput().isKeyPressed(Input.KEY_LSHIFT)) {
+			if (gc.getInput().isKeyDown(Input.KEY_LSHIFT)) {
 				//SHIFT
 				game.currentIndexSelecting--;
 				if (game.currentIndexSelecting < 0) {
 					game.currentIndexSelecting = game.maxIndex-1;
+				}
+				if (game.currentIndexSelecting != 0) {
+					game.colorSelectID = game.level.usedColors[game.currentIndexSelecting-1];
+				} else {
+					game.colorSelectID = -1;
 				}
 			} else {
 				//NICHT SHIFT (normal)
@@ -21,17 +26,39 @@ public class InputHandler {
 				if (game.currentIndexSelecting >= game.maxIndex) {
 					game.currentIndexSelecting = 0;
 				}
+				
+				if (game.currentIndexSelecting != 0) {
+					game.colorSelectID = game.level.usedColors[game.currentIndexSelecting-1];
+				} else {
+					game.colorSelectID = -1;
+				}
 			}
 		}
 		
 		if (gc.getInput().isKeyPressed(Input.KEY_UP) || gc.getInput().isKeyPressed(Input.KEY_W)) {
-			game.level.moveUp(selectedID);
+			if (game.currentIndexSelecting == game.selectPlayer) {
+				game.level.movePlayerUp();
+			} else {
+				game.level.moveUp(game.level.usedColors[game.currentIndexSelecting-1]);
+			}
 		} else if (gc.getInput().isKeyPressed(Input.KEY_DOWN) || gc.getInput().isKeyPressed(Input.KEY_S)) {
-			game.level.moveDown(selectedID);			
+			if (game.currentIndexSelecting == game.selectPlayer) {
+				game.level.movePlayerDown();
+			} else {
+				game.level.moveDown(game.level.usedColors[game.currentIndexSelecting-1]);			
+			}
 		} else if (gc.getInput().isKeyPressed(Input.KEY_LEFT) || gc.getInput().isKeyPressed(Input.KEY_A)) {
-			game.level.moveLeft(selectedID);
+			if (game.currentIndexSelecting == game.selectPlayer) {
+				game.level.movePlayerLeft();
+			} else {
+				game.level.moveLeft(game.level.usedColors[game.currentIndexSelecting-1]);			
+			}
 		} else if (gc.getInput().isKeyPressed(Input.KEY_RIGHT) || gc.getInput().isKeyPressed(Input.KEY_D)) {
-			game.level.moveRight(selectedID);
+			if (game.currentIndexSelecting == game.selectPlayer) {
+				game.level.movePlayerRight();
+			} else {
+				game.level.moveRight(game.level.usedColors[game.currentIndexSelecting-1]);			
+			}
 		}
 		
 		
