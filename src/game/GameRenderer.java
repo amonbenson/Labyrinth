@@ -33,6 +33,7 @@ public class GameRenderer {
 		Database.FNT_DEFAULT.drawString(30, 50, "Zuege " + game.level.moves, Color.white);
 		Database.FNT_DEFAULT.drawString(30, 150, "Modus " + game.currentIndexSelecting, Color.white);
 
+
 	}
 
 	private void renderTiles(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {

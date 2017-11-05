@@ -156,17 +156,19 @@ public class Level {
 			}
 		}
 		checkIfTargetReached();
+		moves++;
 	}
 
 	public void movePlayerDown() {
-		if (player.y != height-1 || field[player.x][player.y+1] instanceof Target) {
-			if (field[player.x][player.y+1] == null) {
+		if (player.y != height-1) {
+			if (field[player.x][player.y+1] == null || field[player.x][player.y+1] instanceof Target) {
 				field[player.x][player.y+1] = player;
 				field[player.x][player.y] = null;
 				player.y = player.y +1;
 			}
 		}
 		checkIfTargetReached();
+		moves++;
 	}
 
 	public void movePlayerLeft() {
@@ -178,6 +180,7 @@ public class Level {
 			}
 		}
 		checkIfTargetReached();
+		moves++;
 	}
 
 	public void movePlayerRight() {
@@ -189,11 +192,12 @@ public class Level {
 			}
 		}
 		checkIfTargetReached();
+		moves++;
 	}
 	
 	public void checkIfTargetReached() {
 		if (player.x == target_x && player.y == target_y) {
-			System.exit(0);
+			Game.isDone = true;
 		}
 	}
 	

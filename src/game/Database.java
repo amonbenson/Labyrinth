@@ -31,6 +31,7 @@ public class Database {
 
 	public static Font FNT_DEFAULT;
 	public static Font FNT_BUTTON;
+	public static Font FNT_TITLE;
 
 	public static void init() {
 		// Load all the images
@@ -53,6 +54,7 @@ public class Database {
 		// Load the font
 		FNT_DEFAULT = loadFont("default.ttf", 22);
 		FNT_BUTTON = loadFont("default.ttf", 30);
+		FNT_TITLE = loadFont("default.ttf", 40);
 	}
 
 	public static Image loadImage(String name) {
