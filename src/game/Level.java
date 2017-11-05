@@ -37,7 +37,7 @@ public class Level {
 		field[target_x][target_y] = target;
 		
 		//Menschen hinzufügen:
-		field[player_spawn_x][player_spawn_y] = new Player(player_spawn_x, player_spawn_y);
+		field[player_spawn_x][player_spawn_y] = player;
 		
 		usedColors = getUsedColors();
 	}
@@ -147,25 +147,43 @@ public class Level {
 	}
 
 	public void movePlayerUp() {
-		if (target.y != 0) {
-			if (field[target.x][target.y-1] == null) {
-				field[target.x][target.y-1] = target;
-				field[target.x][target.y] = null;
-				target.y = target.y -1;
+		if (player.y != 0) {
+			if (field[player.x][player.y-1] == null) {
+				field[player.x][player.y-1] = player;
+				field[player.x][player.y] = null;
+				player.y = player.y -1;
 			}
 		}
 	}
 
 	public void movePlayerDown() {
-
+		if (player.y != height-1) {
+			if (field[player.x][player.y+1] == null) {
+				field[player.x][player.y+1] = player;
+				field[player.x][player.y] = null;
+				player.y = player.y +1;
+			}
+		}
 	}
 
 	public void movePlayerLeft() {
-		
+		if (player.x != 0) {
+			if (field[player.x-1][player.y] == null) {
+				field[player.x-1][player.y] = player;
+				field[player.x][player.y] = null;
+				player.x = player.x -1;
+			}
+		}
 	}
 
 	public void movePlayerRight() {
-		
+		if (player.x != width-1) {
+			if (field[player.x+1][player.y] == null) {
+				field[player.x+1][player.y] = player;
+				field[player.x][player.y] = null;
+				player.x = player.x +1;
+			}
+		}
 	}
 	
 }
