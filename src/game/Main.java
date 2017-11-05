@@ -63,7 +63,7 @@ public class Main extends StateBasedGame {
 		//this.addState(new EditorMain());//Editor
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
 		this.addState(new ScoreScreen());
-		enterState(Game.ID);
+		enterState(MainMenu.ID);
 	}
 
 }
