@@ -8,8 +8,8 @@ import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import score.ScoreScreen;
 import mainMenu.MainMenu;
-
 //import LevelEditor.EditorMain;
 
 public class Main extends StateBasedGame {
@@ -19,7 +19,7 @@ public class Main extends StateBasedGame {
 	public static int WIDTH = 1920;
 	public static int HEIGHT = 1080;
 
-	public static boolean FULLSCREEN = true;
+	public static boolean FULLSCREEN = false;
 	public static boolean MOUSE_GRABBED = false;
 	public static int TARGET_FPS = 120;
 	
@@ -62,7 +62,7 @@ public class Main extends StateBasedGame {
 		this.addState(new MainMenu());//Hier fügen wir die Menüs hinzu
 		//this.addState(new EditorMain());//Editor
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
-
+		this.addState(new ScoreScreen());
 		enterState(Game.ID);
 	}
 

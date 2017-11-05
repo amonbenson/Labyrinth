@@ -1,13 +1,26 @@
 package game;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+
+import score.ScoreScreen;
 
 public class InputHandler {
 	public void input(GameContainer gc, StateBasedGame sbg, Game game, int delta) {
 
-		int selectedID = StoneMoveable.RED;
+		
+		if (Game.isDone) {
+			Game.isDone = false;
+			ScoreScreen.score = game.level.moves;
+			sbg.enterState(ScoreScreen.ID, new FadeOutTransition(Color.white), new FadeInTransition(Color.black));
+		}
+		
+		
+		
 
 		if (gc.getInput().isKeyPressed(Input.KEY_TAB)) {
 			if (gc.getInput().isKeyDown(Input.KEY_LSHIFT)) {
