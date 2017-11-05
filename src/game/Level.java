@@ -33,8 +33,6 @@ public class Level {
 			}
 		}
 		
-		//Target hinzufügen:
-		field[target_x][target_y] = target;
 		
 		//Menschen hinzufügen:
 		field[player_spawn_x][player_spawn_y] = player;
@@ -154,6 +152,7 @@ public class Level {
 				player.y = player.y -1;
 			}
 		}
+		checkIfTargetReached();
 	}
 
 	public void movePlayerDown() {
@@ -164,6 +163,7 @@ public class Level {
 				player.y = player.y +1;
 			}
 		}
+		checkIfTargetReached();
 	}
 
 	public void movePlayerLeft() {
@@ -174,6 +174,7 @@ public class Level {
 				player.x = player.x -1;
 			}
 		}
+		checkIfTargetReached();
 	}
 
 	public void movePlayerRight() {
@@ -183,6 +184,13 @@ public class Level {
 				field[player.x][player.y] = null;
 				player.x = player.x +1;
 			}
+		}
+		checkIfTargetReached();
+	}
+	
+	public void checkIfTargetReached() {
+		if (player.x == target_x && player.y == target_y) {
+			
 		}
 	}
 	

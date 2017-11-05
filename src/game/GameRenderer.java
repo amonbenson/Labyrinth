@@ -73,14 +73,13 @@ public class GameRenderer {
 						g.setColor(STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID]);
 						g.fillRect(x, y, 1, 1);
 					}
-					if (tile instanceof Target) {
-						Database.IMG_FINISH.draw(x, y, 1, 1);
-					}
 					if (tile instanceof Player) {
 						Database.IMG_PLAYER.draw(x, y, 1, 1);
 					}
 				}
 			}
 		}
+		
+		Database.IMG_FINISH.draw(level.target_x, level.target_y, 1, 1);
 	}
 }
