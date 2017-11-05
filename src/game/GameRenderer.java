@@ -1,4 +1,5 @@
 package game;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,20 +9,50 @@ public class GameRenderer {
 
 	public static final Color[] STONE_MOVABLE_COLORS = new Color[] { Color.blue, Color.green, Color.yellow, Color.red };
 
+	private long animationTime;
+
 	private Color background;
 
 	public GameRenderer() {
+		animationTime = 0;
 		background = new Color(73, 209, 145);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
+		// Update the animation time
+		animationTime = System.currentTimeMillis();
+
+		// Set the background
 		g.setColor(background);
 		g.fillRect(0, 0, Main.WIDTH, Main.HEIGHT);
+
+		// Render the tiles
 		renderTiles(gc, sbg, game, g);
 
-		g.drawString("Züge: "+game.level.moves, 50, 50);
-		g.drawString("Modus: "+game.currentIndexSelecting, 50, 150);
-
+		// Draw used Moves
+		Database.FNT_DEFAULT.drawString(30, 50, "Zuege " + game.level.moves, Color.white);
+		
+		// Draw the color selector
+		drawColorSelector(game, g, 30, 100);
+	}
+	
+	private void drawColorSelector(Game game, Graphics g, float x, float y) {
+		// Draw the small tiles
+		float tileSize = 128;
+		float tileSpace = 8;
+		for (int i = 0; i < game.maxIndex; i++) {
+			
+			float px = x + tileSize / 2;
+			float py = y + i * (tileSize + tileSpace);
+			
+			if (i == 0) {
+				Database.IMG_PLAYER.draw(px, py, tileSize, tileSize);
+			} else {
+				Database.IMG_STONE_MOVABLE.draw(px, py, tileSize, tileSize, STONE_MOVABLE_COLORS[game.level.usedColors[i - 1]]);
+			}
+		}
+		
+		Database.IMG_SELECTOR.draw(x, y + game.currentIndexSelecting * (tileSize + tileSpace), tileSize * 2, tileSize);
 	}
 
 	private void renderTiles(GameContainer gc, StateBasedGame sbg, Game game, Graphics g) {
@@ -69,18 +100,28 @@ public class GameRenderer {
 					}
 
 					if (tile instanceof StoneMoveable) {
+						StoneMoveable stone = (StoneMoveable) tile;
+
 						// Render a movable stone
-						g.setColor(STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID]);
-						g.fillRect(x, y, 1, 1);
-					}
-					if (tile instanceof Target) {
-						Database.IMG_FINISH.draw(x, y, 1, 1);
+						Color color = STONE_MOVABLE_COLORS[((StoneMoveable) tile).ID];
+						Database.IMG_STONE_MOVABLE.draw(x, y, 1, 1, color);
 					}
 					if (tile instanceof Player) {
+
+						// Make the player wiggle a bit cause why not
+						g.pushTransform();
+						
+						float wiggle = (float) Math.sin(animationTime * 0.01);
+						g.rotate(x + 0.5f - wiggle * 1.5f, y + 0.5f, wiggle * 1.3f);
+						
 						Database.IMG_PLAYER.draw(x, y, 1, 1);
+						
+						g.popTransform();
 					}
 				}
 			}
 		}
+
+		Database.IMG_FINISH.draw(level.target_x, level.target_y, 1, 1);
 	}
 }

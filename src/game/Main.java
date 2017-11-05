@@ -3,14 +3,17 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import levelEditor.EditorMain;
-
-//import LevelEditor.EditorMain;
+import score.ScoreScreen;
+import mainMenu.MainMenu;
 
 public class Main extends StateBasedGame {
 
@@ -54,11 +57,15 @@ public class Main extends StateBasedGame {
 		Database.init();
 		
 		// Start the main music loop
-		//Database.SND_MUSIC_TITLE.loop();
+		Database.SND_MUSIC_TITLE.loop();
 		
 		//Hier fügen wir die Menüs hinzu
-		this.addState(new EditorMain());
+		this.addState(new MainMenu());//Hier fügen wir die Menüs hinzu
+		this.addState(new EditorMain());//Editor
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
+		this.addState(new ScoreScreen());
+		
+		enterState(MainMenu.ID);
 	}
 
 }
