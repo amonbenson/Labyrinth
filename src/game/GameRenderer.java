@@ -36,10 +36,10 @@ public class GameRenderer {
 		renderTiles(gc, sbg, game, g);
 
 		// Draw used Moves
-		Database.FNT_DEFAULT.drawString(30, 50, "Zuege " + game.level.moves, Color.white);
+		Database.FNT_DEFAULT.drawString(70, 50, "Zuege " + game.level.moves, Color.white);
 		
 		// Draw the color selector
-		drawColorSelector(game, g, 30, 100);
+		drawColorSelector(game, g, 10, 130);
 	}
 	
 	private void drawColorSelector(Game game, Graphics g, float x, float y) {
