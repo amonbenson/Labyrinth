@@ -22,7 +22,7 @@ public class Main extends StateBasedGame {
 	public static int WIDTH = 1920;
 	public static int HEIGHT = 1080;
 
-	public static boolean FULLSCREEN = false;
+	public static boolean FULLSCREEN = true;
 	public static boolean MOUSE_GRABBED = true;
 	public static int TARGET_FPS = 120;
 	
