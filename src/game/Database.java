@@ -25,6 +25,8 @@ public class Database {
 	public static Image IMG_PLAYER;
 	public static Image IMG_FINISH;
 
+	public static Image IMG_SELECTOR;
+
 	public static Music SND_MUSIC_TITLE;
 	public static Music SND_BUTTON;
 	public static Music SND_WIN;
@@ -46,6 +48,8 @@ public class Database {
 		
 		IMG_PLAYER = loadImage("player.png");
 		IMG_FINISH = loadImage("finish.png");
+
+		IMG_SELECTOR = loadImage("colorSelector.png");
 		
 		// Load the music / sounds
 		SND_MUSIC_TITLE = loadMusic("musicTitle.ogg");
