@@ -56,13 +56,14 @@ public class Main extends StateBasedGame {
 		// Start the main music loop
 		Database.SND_MUSIC_TITLE.loop();
 		
-		//Hier fügen wir die Menüs hinzu
+		
 
-		this.addState(new MainMenu());
-		enterState(MainMenu.ID);
 
-		//this.addState(new EditorMain());
+		this.addState(new MainMenu());//Hier fügen wir die Menüs hinzu
+		//this.addState(new EditorMain());//Editor
 		this.addState(new Game()); //Das erste hinzugefügte GameState wird automatisch geladen
+
+		enterState(Game.ID);
 	}
 
 }
