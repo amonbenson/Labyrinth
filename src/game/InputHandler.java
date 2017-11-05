@@ -15,11 +15,22 @@ public class InputHandler {
 				if (game.currentIndexSelecting < 0) {
 					game.currentIndexSelecting = game.maxIndex-1;
 				}
+				if (game.currentIndexSelecting != 0) {
+					game.colorSelectID = game.level.usedColors[game.currentIndexSelecting-1];
+				} else {
+					game.colorSelectID = -1;
+				}
 			} else {
 				//NICHT SHIFT (normal)
 				game.currentIndexSelecting++;
 				if (game.currentIndexSelecting >= game.maxIndex) {
 					game.currentIndexSelecting = 0;
+				}
+				
+				if (game.currentIndexSelecting != 0) {
+					game.colorSelectID = game.level.usedColors[game.currentIndexSelecting-1];
+				} else {
+					game.colorSelectID = -1;
 				}
 			}
 		}

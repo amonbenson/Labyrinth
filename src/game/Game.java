@@ -25,7 +25,7 @@ public class Game extends BasicGameState {
 	public int currentIndexSelecting = 0;
 	public int maxIndex;
 	public static final int selectPlayer = 0;
-	
+	public int colorSelectID = -1; //-1 heiﬂt keine selektiert
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		this.game = sbg;
