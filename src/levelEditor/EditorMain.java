@@ -17,7 +17,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import game.Database;
 import game.GameRenderer;
 import game.TileTransform;
+import mainMenu.MainMenu;
 import game.Level;
+import game.Main;
 import game.Tile;
 public class EditorMain extends BasicGameState{
 
@@ -31,11 +33,11 @@ public class EditorMain extends BasicGameState{
 	private TileTransform trans;
 	private TrueTypeFont f;
 	
-	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+	public void init(GameContainer gc, StateBasedGame arg1) throws SlickException {
 		// TODO Auto-generated method stub
 		game = arg1;
 		inp = new InputHandler(this);
-		arg0.getInput().addMouseListener(inp);
+		gc.getInput().addMouseListener(inp);
 		rend = new GameRenderer();
 		Tile[][] tilearr = new Tile[5][];
 		for (int i = 0; i<tilearr.length; i++)
@@ -78,6 +80,11 @@ public class EditorMain extends BasicGameState{
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		// Show the mouse
+		if (gc.isMouseGrabbed()) gc.setMouseGrabbed(false);
+		
+		// Go back to title on escape
+		if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) Main.mainGame.transitState(MainMenu.ID);
 		
 		System.out.println("Maus bei x: "+gc.getInput().getMouseX()+" y: "+gc.getInput().getMouseY());
 	}

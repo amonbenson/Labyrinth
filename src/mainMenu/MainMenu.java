@@ -17,6 +17,7 @@ import game.Database;
 import game.GUITools;
 import game.GameRenderer;
 import game.Main;
+import levelEditor.EditorMain;
 import levelSelect.LevelSelect;
 
 public class MainMenu extends BasicGameState{
@@ -32,7 +33,7 @@ public class MainMenu extends BasicGameState{
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		buttonTexts = new String[] {"Spielen", "Einstellungen", "Ende"};
+		buttonTexts = new String[] {"Spielen", "Level Editor", "Ende"};
 		buttons = GUITools.generateCenteredGUIButtons(buttonTexts.length, 512, GUITools.DEFAULT_BTN_WIDTH, GUITools.DEFAULT_BTN_HEIGHT, GUITools.DEFAULT_BTN_SPACE);
 	}
 
@@ -77,7 +78,7 @@ public class MainMenu extends BasicGameState{
 				Main.mainGame.transitState(LevelSelect.ID);
 			}
 			if (chosenButton==1){
-				
+				Main.mainGame.transitState(EditorMain.ID);
 			}
 			if (chosenButton==2){
 				System.out.println("> Bye from the console! Was a pleasure to show you no errors.");

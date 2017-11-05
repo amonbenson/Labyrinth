@@ -87,6 +87,7 @@ public class Main extends StateBasedGame {
 	 * @param newStateID
 	 */
 	public void transitState(int newStateID) {
+		getContainer().setMouseGrabbed(MOUSE_GRABBED);
 		enterState(newStateID, new FadeOutTransition(GameRenderer.BACKGROUND_COLOR), new FadeInTransition(GameRenderer.BACKGROUND_COLOR));
 	}
 }
